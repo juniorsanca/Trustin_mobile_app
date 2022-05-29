@@ -10,7 +10,6 @@ import {
     Image,
     Text,
     } from 'react-native';
-import { set } from "react-native-reanimated";
 //import LinearGradient from 'react-native-linear-gradient';
 //import LinearGradient from 'react-native-linear-gradient'
 //import {  } from "react-native-gesture-handler";
@@ -20,24 +19,28 @@ const {width, height} = Dimensions.get('window');
 
 //const COLORS = {primary: '#282534', white: '#fff'};
 const COLORS = {primary: '#282534', white: '#fff'};
+const SIZES = {width};
 
 
 const slides = [
     {
         id: '1',
         image: require('../images/img_slide1.png'),
+        //image: require('../images/image1.png'),
         title: 'Faitez vous entendre',
         subtitle: 'Le lorem impsum est, en imprimerie une suite de mots sans signification',
     },
     {
         id: '2',
         image: require('../images/img_slide2.png'),
+        //image: require('../images/image2.png'),
         title: 'Notez votre collaboration',
         subtitle: 'Le lorem impsum est, en imprimerie une suite de mots sans signification',
     },
     {
         id: '3',
         image: require('../images/img_slide3.png'),
+        //image: require('../images/image3.png'),
         title: 'Collectez des avis de qualité',
         subtitle: 'Le lorem impsum est, en imprimerie une suite de mots sans signification',
     },
@@ -45,22 +48,50 @@ const slides = [
 
 const Slide = ({item}) => {
     return (
-      <View style={{alignItems: 'center'}}>
-        <Image
-          source={item.image}
-          style={{height: '75%', width, resizeMode: 'contain'}}
-        />
-        <View>
-          <Text style={styles.title}>{item.title}</Text>
-          <Text style={styles.subtitle}>{item.subtitle}</Text>
-        </View>
+      <View style={{
+          alignItems: 'center',
+          padding: 0,
+          margin: 0
+          }}>
+        <Image 
+            source={item.image} 
+            //style={{height: '70%', width, resizeMode: 'contain'}} />
+            style={{height: '70%', width, resizeMode: 'contain'}} />
+
+            <View>
+                <Text style={styles.title}>{item.title}</Text>
+                <Text style={styles.subtitle}>{item.subtitle}</Text>
+            </View>
       </View>
     );
   };
 
 const OnboardingScreen = ({navigation}) => {
     const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
-    const ref = React.useRef(null);
+    const ref = React.useRef();
+
+    const updateCurrentSlideIndex = e => {
+        const contentOffsetX = e.nativeEvent.contentOffset.x;
+        const currentIndex = Math.round(contentOffsetX / width);
+        setCurrentSlideIndex(currentIndex);
+    };
+
+    const goNextSlide = () => {
+        const nextSlideIndex = currentSlideIndex +1;
+        if (nextSlideIndex != slides.length) {
+            const offset = nextSlideIndex * width;
+            ref?.current?.scrollToOffset({offset});
+            setCurrentSlideIndex(nextSlideIndex);
+        }
+    };
+
+    const skip = () => {
+        const lastSlidesIndex = slides.length -1;
+        const offset = lastSlidesIndex * width;
+        ref?.current?.scrollToOffset({offset});
+        setCurrentSlideIndex(lastSlidesIndex);
+    };
+
     const Footer = () => {
         return(
             <View 
@@ -72,7 +103,7 @@ const OnboardingScreen = ({navigation}) => {
                 <View style={{
                     flexDirection: 'row', 
                     justifyContent: 'center', 
-                    marginTop:20,
+                    marginTop:25,
                     }}>
                     {slides.map((_, index) => (
                         <View 
@@ -87,85 +118,71 @@ const OnboardingScreen = ({navigation}) => {
                      />
                     ))}
                 </View>
-                <View style={{marginBottom: 20}}>
-                    {
-                        currentSlideIndex == slides.length -1 ? <View style={{height: 50}}>
-                        <TouchableOpacity 
-                            style={[styles.btn]} 
-                            onPress={()=> navigation.navigate('HomeScreen')}>
-                            <Text style={{fontWeight: 'bold', fontSize: 15}}>
-                                GET STARTED
-                            </Text>
-                        </TouchableOpacity>
-                    </View> :
-                                    <View style={{flexDirection: "row"}}>
+                        <View style={{marginBottom: 20}}>
+                            {currentSlideIndex == slides.length -1 ? ( 
+                            <View style={{height: 50}}>
+                                <TouchableOpacity 
+                                    style={[styles.btn]} 
+                                    onPress={() => navigation.replace('HomeScreen')}>
+                                    <Text style={{fontWeight: 'bold', fontSize: 15}}>
+                                        GET STARTED
+                                    </Text>
+                                </TouchableOpacity>
+                            </View> 
+                        ) : (
+                                <View style={{flexDirection: "row"}}>
                                     <TouchableOpacity 
-                                          onPress={skip}
+                                          activeOpacity={0.8}
                                           style={[
-                                              styles.btn, {
+                                              styles.btn, 
+                                              {
                                                   backgroundColor: 'transparent', 
                                                   borderWidth: 1, 
-                                                  borderColor:COLORS.white
-                                                  }]}>
-                                      <Text  
+                                                  borderColor:COLORS.white,
+                                                  },
+                                                ]}
+                                        onPress={skip}>
+                                       <Text  
                                           style={{
                                               fontWeight: 'bold', 
                                               fontSize: 15, 
-                                              color:COLORS.white
-                                              }}>Skip</Text>
+                                              color:COLORS.white,
+                                              }}>
+                                                  SKIP
+                                       </Text>
                                     </TouchableOpacity>
-              
                                     <View style={{width: 15}} />
-              
+
                                     <TouchableOpacity 
-                                          style={[styles.btn]} onPress={goNextSlide}>
+                                          activeOpacity={0.8}
+                                          style={[styles.btn]} 
+                                          onPress={goNextSlide}>
                                       <Text 
                                           style={{
                                               fontWeight: 'bold', 
-                                              fontSize: 15
-                                              }}>NEXT</Text>
+                                              fontSize: 15,
+                                              }}>NEXT
+                                        </Text>
                                     </TouchableOpacity>
                                 </View>
-                            }
- 
-                </View>
-            </View>
-        ) 
+                            )}
+                     </View>
+             </View>
+        );
     };
 
-    const updateCurrentSlideIndex = e => {
-        const contentOffsetX = e.nativeEvent.contentOffset.x;
-        const currentIndex = Math.round(contentOffsetX / width);
-        setCurrentSlideIndex(currentIndex);
-    };
-
-    const goNextSlide = () => {
-        const nextSlideIndex = currentSlideIndex +1;
-        if(nextSlideIndex != slides.length) {
-            const offset = nextSlideIndex * width;
-            ref?.current?.scrollToOffset({offset});
-            setCurrentSlideIndex(nextSlideIndex);
-        }
-    };
-
-    const skip = () => {
-        const lastSlidesIndex = slides.length -1;
-        const offset = lastSlidesIndex * width;
-        ref?.current?.scrollToOffset({offset});
-        setCurrentSlideIndex(lastSlidesIndex);
-    };
 
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: COLORS.primary}}>
             <StatusBar backgroundColor={COLORS.primary} />
-                <FlatList 
+                <FlatList
                     ref={ref}
                     onMomentumScrollEnd={updateCurrentSlideIndex}
-                    pagingEnabled
-                    data={slides} 
                     contentContainerStyle={{height: height * 0.75}}
-                    horizontal
                     showsHorizontalScrollIndicator={false}
+                    horizontal
+                    data={slides}
+                    pagingEnabled
                     renderItem={({item}) => <Slide item={item} />} 
                 />
             <Footer />
@@ -178,7 +195,7 @@ const styles = StyleSheet.create({
         color: COLORS.white,
         fontSize: 22,
         fontWeight: 'bold',
-        marginTop: 0,
+        marginTop: 20,
         textAlign: 'center'
     },
     subtitle : {
@@ -189,6 +206,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         lineHeight: 23,
     },
+    image: {
+        height: '100%',
+        width: '100%',
+        resizeMode: 'contain',
+      },
     indicator : {
         height: 2.5,
         width: 10,
@@ -200,11 +222,11 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 50,
         borderRadius: 5,
-        backgroundColor: COLORS.white,
+        backgroundColor: '#fff',
         justifyContent: 'center',
         alignItems: 'center',
 
-    }
+    },
 });
 
 export default OnboardingScreen;

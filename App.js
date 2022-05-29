@@ -1,10 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
 import 'react-native-gesture-handler';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
@@ -33,7 +26,9 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
           {isAppFirstLaunched && (
-            <Stack.Screen name="OnboardingScreen" component={OnboardingScreen} />
+            <Stack.Screen 
+            name="OnboardingScreen" 
+            component={OnboardingScreen} />
           )}
             <Stack.Screen name="HomeScreen" component={HomeScreen} />
         </Stack.Navigator>
