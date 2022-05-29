@@ -10,7 +10,8 @@ import {
     Image,
     Text,
     } from 'react-native';
-//import LinearGradient from 'react-native-linear-gradient';
+    import LinearGradient from 'react-native-linear-gradient';
+
 //import LinearGradient from 'react-native-linear-gradient'
 //import {  } from "react-native-gesture-handler";
 
@@ -19,7 +20,12 @@ const {width, height} = Dimensions.get('window');
 
 //const COLORS = {primary: '#282534', white: '#fff'};
 const COLORS = {primary: '#282534', white: '#fff'};
-const SIZES = {width};
+
+
+const START_DEFAULT = { x: 0.5, y: 0 };
+const END_DEFAULT = { x: 0.5, y: 1 };
+const GRADIENT_COLORS = ["#F5A64F", "#F07754", "#CA4171"];
+const GRADIENT_LOCATIONS = [0, 0.3, 0.9, 0.7, 0.8, 1, 1];
 
 
 const slides = [
@@ -56,11 +62,17 @@ const Slide = ({item}) => {
         <Image 
             source={item.image} 
             //style={{height: '70%', width, resizeMode: 'contain'}} />
-            style={{height: '70%', width, resizeMode: 'contain'}} />
+            style={{
+                height: '80%', 
+                width, 
+                resizeMode: 'contain'}} />
 
-            <View>
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.subtitle}>{item.subtitle}</Text>
+            <View  
+                style={{
+                    width, 
+                    resizeMode: 'contain'}}>
+                    <Text style={styles.title}>{item.title}</Text>
+                    <Text style={styles.subtitle}>{item.subtitle}</Text>
             </View>
       </View>
     );
@@ -96,14 +108,14 @@ const OnboardingScreen = ({navigation}) => {
         return(
             <View 
                 style={{
-                    height: height * 0.25, 
+                    height: height * 0.22, 
                     justifyContent: 'space-between',
                     paddingHorizontal: 20,
                 }}>
                 <View style={{
                     flexDirection: 'row', 
                     justifyContent: 'center', 
-                    marginTop:25,
+                    marginTop:0,
                     }}>
                     {slides.map((_, index) => (
                         <View 
@@ -111,14 +123,14 @@ const OnboardingScreen = ({navigation}) => {
                             style={[
                             styles.indicator, 
                             currentSlideIndex == index && {
-                            backgroundColor: COLORS.white,
+                            backgroundColor: '#fff',
                             width: 25,
                         },
                       ]} 
                      />
                     ))}
                 </View>
-                        <View style={{marginBottom: 20}}>
+                        <View style={{marginBottom: 30}}>
                             {currentSlideIndex == slides.length -1 ? ( 
                             <View style={{height: 50}}>
                                 <TouchableOpacity 
@@ -173,20 +185,30 @@ const OnboardingScreen = ({navigation}) => {
 
 
     return (
-        <SafeAreaView style={{flex: 1, backgroundColor: COLORS.primary}}>
-            <StatusBar backgroundColor={COLORS.primary} />
-                <FlatList
-                    ref={ref}
-                    onMomentumScrollEnd={updateCurrentSlideIndex}
-                    contentContainerStyle={{height: height * 0.75}}
-                    showsHorizontalScrollIndicator={false}
-                    horizontal
-                    data={slides}
-                    pagingEnabled
-                    renderItem={({item}) => <Slide item={item} />} 
-                />
+        //LinearGradient
+        /*
+
+        */
+        <LinearGradient 
+            style={styles.container}
+            colors= {GRADIENT_COLORS}
+            locations= {GRADIENT_LOCATIONS}
+            start= {START_DEFAULT}
+            end= {END_DEFAULT}
+            >
+                <StatusBar backgroundColor={COLORS.primary} />
+                    <FlatList
+                        ref={ref}
+                        onMomentumScrollEnd={updateCurrentSlideIndex}
+                        contentContainerStyle={{height: height * 0.78}}
+                        showsHorizontalScrollIndicator={false}
+                        horizontal
+                        data={slides}
+                        pagingEnabled
+                        renderItem={({item}) => <Slide item={item} />} 
+                    />
             <Footer />
-        </SafeAreaView>
+        </LinearGradient>
     );
 };
 
@@ -202,7 +224,9 @@ const styles = StyleSheet.create({
         color: COLORS.white,
         fontSize: 13,
         marginTop: 10,
-        maxWidth: '70%',
+        marginLeft: 50,
+        marginRight: 50,
+        maxWidth: '100%',
         textAlign: 'center',
         lineHeight: 23,
     },
