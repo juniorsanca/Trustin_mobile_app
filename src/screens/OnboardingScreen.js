@@ -1,7 +1,6 @@
 import React from "react";
 import {
     TouchableOpacity,
-    SafeAreaView, 
     StyleSheet, 
     Dimensions,
     StatusBar,
@@ -10,15 +9,13 @@ import {
     Image,
     Text,
     } from 'react-native';
-    import LinearGradient from 'react-native-linear-gradient';
 
-//import LinearGradient from 'react-native-linear-gradient'
-//import {  } from "react-native-gesture-handler";
+    import LinearGradient from 'react-native-linear-gradient';
 
 
 const {width, height} = Dimensions.get('window');
 
-//const COLORS = {primary: '#282534', white: '#fff'};
+
 const COLORS = {primary: '#282534', white: '#fff'};
 
 
@@ -61,7 +58,6 @@ const Slide = ({item}) => {
           }}>
         <Image 
             source={item.image} 
-            //style={{height: '70%', width, resizeMode: 'contain'}} />
             style={{
                 height: '80%', 
                 width, 
@@ -185,30 +181,29 @@ const OnboardingScreen = ({navigation}) => {
 
 
     return (
-        //LinearGradient
-        /*
+        <View style={{flex:1}}>
+            <LinearGradient 
+                style={styles.container}
+                colors= {GRADIENT_COLORS}
+                locations= {GRADIENT_LOCATIONS}
+                start= {START_DEFAULT}
+                end= {END_DEFAULT}
+                >
+                    <StatusBar backgroundColor={COLORS.primary} />
+                        <FlatList
+                            ref={ref}
+                            onMomentumScrollEnd={updateCurrentSlideIndex}
+                            contentContainerStyle={{height: height * 0.78}}
+                            showsHorizontalScrollIndicator={false}
+                            horizontal
+                            data={slides}
+                            pagingEnabled
+                            renderItem={({item}) => <Slide item={item} />} 
+                        />
+                <Footer />
+            </LinearGradient>
+        </View> 
 
-        */
-        <LinearGradient 
-            style={styles.container}
-            colors= {GRADIENT_COLORS}
-            locations= {GRADIENT_LOCATIONS}
-            start= {START_DEFAULT}
-            end= {END_DEFAULT}
-            >
-                <StatusBar backgroundColor={COLORS.primary} />
-                    <FlatList
-                        ref={ref}
-                        onMomentumScrollEnd={updateCurrentSlideIndex}
-                        contentContainerStyle={{height: height * 0.78}}
-                        showsHorizontalScrollIndicator={false}
-                        horizontal
-                        data={slides}
-                        pagingEnabled
-                        renderItem={({item}) => <Slide item={item} />} 
-                    />
-            <Footer />
-        </LinearGradient>
     );
 };
 
