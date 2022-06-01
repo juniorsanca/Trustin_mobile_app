@@ -5,16 +5,11 @@ import {
     StyleSheet, 
     Dimensions,
     TouchableOpacity,
-    Image,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+
 const {width, height} = Dimensions.get('window');
 
-const slides = [
-    {
-        image: require('../images/img_slide1.png'),
-},
-]
 const START_DEFAULT = { x: 0.5, y: 0 };
 const END_DEFAULT = { x: 0.5, y: 1 };
 const GRADIENT_COLORS = ["#F5A64F", "#F07754", "#CA4171"];
@@ -24,17 +19,17 @@ const GRADIENT_LOCATIONS = [0, 0.3, 0.9, 0.7, 0.8, 1, 1];
 const HomeScreen = ({navigation}) => {
     return (
         <View style={{flex:1}}>
-        <LinearGradient 
-            style={{
-                height: height, 
-                justifyContent: 'space-between',
-                paddingHorizontal: 50,
-            }}
-            colors= {GRADIENT_COLORS}
-            locations= {GRADIENT_LOCATIONS}
-            start= {START_DEFAULT}
-            end= {END_DEFAULT}
-            >
+            <LinearGradient 
+                style={{
+                    height: height, 
+                    justifyContent: 'space-between',
+                    paddingHorizontal: 50,
+                }}
+                colors= {GRADIENT_COLORS}
+                locations= {GRADIENT_LOCATIONS}
+                start= {START_DEFAULT}
+                end= {END_DEFAULT}
+                >
     
     <View style={{marginTop: 235}}>
         <View style={{height: 0}}></View>
