@@ -5,11 +5,16 @@ import {
     StyleSheet, 
     Dimensions,
     TouchableOpacity,
+    Image,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 const {width, height} = Dimensions.get('window');
 
-
+const slides = [
+    {
+        image: require('../images/img_slide1.png'),
+},
+]
 const START_DEFAULT = { x: 0.5, y: 0 };
 const END_DEFAULT = { x: 0.5, y: 1 };
 const GRADIENT_COLORS = ["#F5A64F", "#F07754", "#CA4171"];
@@ -33,11 +38,11 @@ const HomeScreen = ({navigation}) => {
     
     <View style={{marginTop: 235}}>
         <View style={{height: 0}}></View>
-            <Text style={[styles.title]}
-                >Trustin</Text>
+            <Text style={[styles.title]} >Trust<Text style={{fontWeight: 'bold', color:'#CA4171'}}>{'in'}</Text></Text>
         </View>
-            <View style={{marginTop: 60}}>
-                <View style={{height: 55}}>
+
+            <View style={{marginTop: 55}}>
+                <View style={{height: 60}}>
                     <TouchableOpacity 
                         style={[styles.btn]} 
                         onPress={() => navigation.replace('LoginScreen')}>
@@ -49,7 +54,7 @@ const HomeScreen = ({navigation}) => {
             </View> 
 
             <View style={{marginBottom: 330}}>
-                <View style={{height: 55}}>
+                <View style={{height: 60}}>
                     <TouchableOpacity 
                         style={[styles.btn2]} 
                         onPress={() => navigation.replace('')}>
