@@ -18,7 +18,7 @@ const GRADIENT_LOCATIONS = [0, 0.3, 0.9, 0.7, 0.8, 1, 1];
 
 
 
-const LoginScreen = ({navigation}) => {
+const RegisterScreen = ({navigation}) => {
     return (
         <View style={{flex:1}}>
             <LinearGradient 
@@ -34,32 +34,35 @@ const LoginScreen = ({navigation}) => {
                 end= {END_DEFAULT}
                 >
 
-                <View style={{marginTop: 130}}>
+                <View style={{marginTop: 80}}>
                         <Text style={[styles.title]} >Trust<Text style={{fontWeight: 'bold', color:'#CA4171'}}>{'in'}</Text></Text>
-                </View>
-                
-                <View style={{marginTop: 65}}>
-                        <Text style={[styles.hello]} >
-                            <Text style={{
-                                fontWeight: 'bold',
-                                borderWidth:1,
-                                borderColor:'#fff', 
-                                color:'#fff',
-                                }}>
-                                {'Bienvenue 👋'}
-                            </Text>
-                        </Text>
-                </View>
-
-                <View style={{marginTop: 5}}>
-                        <Text style={[styles.welcome]} >
-                            <Text>
-                                {'Connectez-vous à votre compte'}
-                            </Text>
-                        </Text>
                 </View>
 
                 <View style={{marginTop: 45}}>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Nom d'utilisateur *"
+                        //value=""
+                    />
+                </View>
+
+                <View style={{marginTop: 10}}>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Nom de l'entreprise"
+                        //value=""
+                    />
+                </View>
+
+                <View style={{marginTop: 10}}>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Numéro de téléphone"
+                        //value=""
+                    />
+                </View>
+
+                <View style={{marginTop: 10}}>
                     <TextInput
                         style={styles.input}
                         placeholder="Adresse email"
@@ -76,30 +79,36 @@ const LoginScreen = ({navigation}) => {
                     />
                 </View>
 
-                <View style={{marginTop: 10}}>
-                        <Text style={[styles.forgotPassword]} >
-                            <Text>
-                                {'Mot de passe oublié ?'}
-                            </Text>
-                        </Text>
-                </View>
+
 
                 <View style={{marginTop: 20}}>
+
                         <View style={{height: 55}}>
                             <TouchableOpacity 
                                 style={[styles.btn2]} 
-                                onPress={() => navigation.replace('RegisterScreen')}>
+                                onPress={() => navigation.replace('')}>
                                 <Text style={{
                                     fontWeight: 'bold', 
-                                    fontSize: 18, 
+                                    fontSize: 15, 
                                     color: '#fff'}}>
-                                    Connexion
+                                    Créer un compte gratuit
                                 </Text>
                             </TouchableOpacity>
                         </View> 
-                </View>
 
-                <View
+                </View>
+            
+                <Text style={[styles.welcome]} >
+                            <Text> {'Vous avez déjà un compte ?'} 
+                                <Text style={{
+                                fontWeight: 'bold',
+                                color:'#FFF',
+                                }}
+                                > Connexion</Text>
+                            </Text>
+                </Text>
+
+                <View 
                     style= {{
                             flex: 1, 
                             justifyContent: 'center', 
@@ -107,12 +116,19 @@ const LoginScreen = ({navigation}) => {
                         }}>
                     <Text>   
                         <Text style={[styles.welcome]} >
-                            <Text> {'Vous n\'avez pas de compte ?'} <Text style={{
+                            <Text> {'Vous avez déjà un compte ?'} 
+                                <Text style={{
                                 fontWeight: 'bold',
                                 color:'#FFF',
                                 }}
-                                > S'inscrire</Text>
+                                > Connexion</Text>
                             </Text>
+
+                            <Text>   
+                        <Text style={[styles.welcome]} >
+                            <Text> {'En cliquant ici, vous acceptez nos termes et notre politique de données'} </Text>
+                        </Text>
+                    </Text>
                         </Text>
                     </Text>
                 </View>
@@ -132,13 +148,11 @@ const styles = StyleSheet.create({
         marginLeft: 0,
         textAlign: 'center'
     },
-    hello: {
-        fontSize: 35,
-        fontWeight: 'bold',
-        marginLeft: 0,
-    },
     welcome: {
         color:'#fff',
+        marginTop: 25,
+        textAlign: "center"
+
     },
     input: {
         height: 56,
@@ -172,6 +186,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
 
     },
+    checkbox: {
+        alignSelf: "center",
+      },
+
+      checkboxContainer: {
+        flexDirection: "row",
+        marginBottom: 20,
+        margin: 35
+      },
+      label: {
+        margin: 8,
+        color: '#fff'
+      },
 });
 
-export default LoginScreen;
+export default RegisterScreen;
