@@ -82,11 +82,8 @@ const RegisterScreen = ({navigation}) => {
 
 
                 <View style={{marginTop: 20}}>
-
                         <View style={{height: 55}}>
-                            <TouchableOpacity 
-                                style={[styles.btn2]} 
-                                onPress={() => navigation.replace('')}>
+                            <TouchableOpacity style={[styles.btn2]} onPress={() => navigation.replace('HomeScreen')}>
                                 <Text style={{
                                     fontWeight: 'bold', 
                                     fontSize: 15, 
@@ -95,40 +92,22 @@ const RegisterScreen = ({navigation}) => {
                                 </Text>
                             </TouchableOpacity>
                         </View> 
-
                 </View>
             
-                <Text style={[styles.welcome]} >
-                            <Text> {'Vous avez déjà un compte ?'} 
-                                <Text style={{
-                                fontWeight: 'bold',
-                                color:'#FFF',
-                                }}
-                                > Connexion</Text>
-                            </Text>
+                <Text style={[styles.haveAccount]} >
+                    <Text> {'Vous avez déjà un compte ?'} 
+                        <Text style={{fontWeight: 'bold', color:'#FFF'}}> Connexion</Text>
+                    </Text>
                 </Text>
 
-                <View 
-                    style= {{
-                            flex: 1, 
-                            justifyContent: 'center', 
-                            alignItems: 'center'
-                        }}>
-                    <Text>   
-                        <Text style={[styles.welcome]} >
-                            <Text> {'Vous avez déjà un compte ?'} 
-                                <Text style={{
-                                fontWeight: 'bold',
-                                color:'#FFF',
-                                }}
-                                > Connexion</Text>
+                <View style= {{ flex: 1,justifyContent: 'center',alignItems: 'center'}}>
+                    <Text>                   
+                        <Text>   
+                            <Text style={[styles.terms]} >
+                                <Text> 
+                                    {'Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée'} 
+                                </Text>
                             </Text>
-
-                            <Text>   
-                        <Text style={[styles.welcome]} >
-                            <Text> {'En cliquant ici, vous acceptez nos termes et notre politique de données'} </Text>
-                        </Text>
-                    </Text>
                         </Text>
                     </Text>
                 </View>
@@ -148,12 +127,18 @@ const styles = StyleSheet.create({
         marginLeft: 0,
         textAlign: 'center'
     },
-    welcome: {
+    haveAccount: {
         color:'#fff',
         marginTop: 25,
-        textAlign: "center"
+        textAlign: "center",
 
     },
+
+    terms: {
+        color:'#fff',
+        textAlign: "center",
+    },
+
     input: {
         height: 56,
         backgroundColor: '#fff',

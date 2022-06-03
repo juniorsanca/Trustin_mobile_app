@@ -131,7 +131,7 @@ const OnboardingScreen = ({navigation}) => {
                             <View style={{height: 50}}>
                                 <TouchableOpacity 
                                     style={[styles.btn]} 
-                                    onPress={() => navigation.replace('HomeScreen')}>
+                                    onPress={() => navigation.replace('WelcomeScreen')}>
                                     <Text style={{fontWeight: 'bold', fontSize: 15}}>
                                         GET STARTED
                                     </Text>
@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
     indicator : {
         height: 2.5,
         width: 10,
-        backgroundColor: 'grey',
+        backgroundColor: 'black',
         marginHorizontal: 3,
         borderRadius: 2,
     },
