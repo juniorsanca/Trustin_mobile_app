@@ -7,14 +7,14 @@ import {
 const Card = ({color, width, aspectratio}) => {
     return (
         <View 
-        style={{
-            backgroundColor: color,
-            width:width,
-            height:width*aspectratio,
-            marginBottom: 10,
-            borderRadius: 10,
-            }}
-            />
+            style={{
+                    backgroundColor: color,
+                    width:width,
+                    height:width*aspectratio,
+                    marginBottom: 10,
+                    borderRadius: 10,
+                }}
+        />
     )
 }
 

@@ -5,18 +5,19 @@ import {
     StyleSheet, 
     Dimensions,
     TextInput,
+    Image,
 } from 'react-native';
 import { ScrollView } from "react-native-gesture-handler";
 import { color } from "react-native-reanimated";
-import Card from "./Card";
+import In from "./components/In";
 
 const items = [
     {
         id: 1,
-        aspectratio: 150/200,
-        color:'#F5A64F',
-        //image: require('../images/img_slide1.png'),
-
+        aspectratio: 170/200,
+        color:'red',
+        image: require('../images/img_slide1.png'),
+        text: 'azerty',
     },
     {
         id: 2,
@@ -36,7 +37,7 @@ const items = [
     {
         id: 5,
         aspectratio: 375/400,
-        color:'#CA4172'
+        color:'violet'
     },
     {
         id: 6,
@@ -45,28 +46,59 @@ const items = [
     },
     {
         id: 7,
-        aspectratio: 1040/500,
+        aspectratio: 600/500,
         color:'#F5A64F'
     },
     {
         id: 8,
-        aspectratio: 2/1,
-        color:'#F5A64F'
+        aspectratio: 1/1,
+        color:'yellow'
     },
     {
         id: 9,
         aspectratio: 1,
-        color:'#F5A64F'
+        color:'green'
     },
     {
         id: 10,
+        aspectratio: 315/400,
+        color:'orange'
+    },
+    {
+        id: 11,
         aspectratio: 375/400,
+        color:'violet'
+    },
+    {
+        id: 12,
+        aspectratio: 500/400,
         color:'#CA4171'
+    },
+    {
+        id: 13,
+        aspectratio: 600/500,
+        color:'#F5A64F'
+    },
+    {
+        id: 14,
+        aspectratio: 1/1,
+        color:'yellow'
+    },
+    {
+        id: 15,
+        aspectratio: 1,
+        color:'green'
+    },
+    {
+        id: 16,
+        aspectratio: 315/400,
+        color:'orange'
     },
 
 ]
 
 const HomeScreen = ({navigation}) => {
+
     const width= (Dimensions.get('window').width/2)-20;
 
     return (
@@ -75,29 +107,26 @@ const HomeScreen = ({navigation}) => {
                     <Text style={[styles.search]} >Parcourir</Text>
                     <Text style={[styles.registered]} >Enregistré</Text>
                 </View>
-                <View style={{marginTop: 10}}>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Nom de l'entreprise"
-                        //value=""
-                    />
-                </View>
-                <View style={{marginTop: 10}}>
-                    <ScrollView>
-                        <View style={{flexDirection:'row'}}>
-                            <View style={{marginRight: 5}}>
-                                {
-                                    items.filter((_,i)=>i%2===0).map(item=><Card color={item.color} aspectratio={item.aspectratio} width={width} key={item.id}/>)
-                                }
-                            </View>
-                            <View style={{marginLeft: 5}}>
-                                {
-                                    items.filter((_,i)=>i%2!==0).map(item=><Card color={item.color} aspectratio={item.aspectratio} width={width} key={item.id}/>)
-                                }
-                            </View>
 
-                        </View>
-                    </ScrollView>
+                <View style={{marginTop: 15}}>
+                    <TextInput style={styles.input} placeholder="Trouver un T'in" />
+                </View>
+
+                <View style={styles.container}>
+                    {/* In */}
+                        <In 
+                            in={{
+                                title : "Cristiano",
+                                image : "https://pbs.twimg.com/media/FK0JaziXEAQdpXn?format=jpg&name=large"
+                            }}
+                            />
+                        <In  
+                            in={{
+                                title : "Adesanya",
+                                image : "https://dicodusport.fr/blog/wp-content/uploads/2021/03/UFC-259-Israel-Adesanya-en-route-pour-marquer-lhistoire.png"
+                            }}
+                            />
+                    {/* In */}
                 </View>
             </View>
     );
@@ -105,6 +134,7 @@ const HomeScreen = ({navigation}) => {
 
 const styles = StyleSheet.create({
     search: {
+        flex: 1,
         marginRight: 15,
         color: 'black',
         fontSize: 15,
@@ -114,16 +144,18 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     body: {
+        flex: 1,
         padding:10,
         alignItems:"center"
     },
+
+
     registered: {
         color: 'black',
         fontSize: 15,
         fontWeight: 'bold',
         marginTop: 40,
         marginRight: 85,
-        textAlign: ''
     },
     parent: {
         flexDirection: "row",

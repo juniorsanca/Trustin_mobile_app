@@ -7,7 +7,6 @@ import WelcomeScreen from './src/screens/WelcomeScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import RegisterScreen from './src/screens/RegisterScreen';
 import HomeScreen from './src/screens/HomeScreen';
-import Card from './src/screens/Card';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -40,7 +39,6 @@ const App = () => {
             <Stack.Screen name="LoginScreen" component={LoginScreen} />
             <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
             <Stack.Screen name="HomeScreen" component={HomeScreen} />
-            <Stack.Screen name="Card" component={Card} />
 
         </Stack.Navigator>
       </NavigationContainer>
