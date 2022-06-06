@@ -2,7 +2,7 @@ export default [
     {
         id: 0,
         image: "https://agence-komkom.fr/assets/Image-diOS-11.jpg",
-        title: 'title 1',
+        title: 'title 1 azerty tfghj azerty azerty',
     },
     {
         id: 1,

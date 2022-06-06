@@ -37,7 +37,8 @@ const In = (props) => {
                 </Pressable>
 
             </View>
-                <Text style={styles.in_name}>{title}</Text>
+
+                <Text style={styles.in_name} numberOfLines={1}>{title}</Text>
         </View>
     )
 }

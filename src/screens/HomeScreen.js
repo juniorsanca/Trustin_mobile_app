@@ -27,7 +27,7 @@ const HomeScreen = ({navigation}) => {
                     <Text style={[styles.registered]} >Enregistré</Text>
                 </View>
 
-                <View style={{marginTop: 15, alignItems: "center"}}>
+                <View style={{margin: 15, alignItems: "center"}}>
                     <TextInput style={styles.input} placeholder="Trouver un T'in" />
                 </View>
 
@@ -41,17 +41,17 @@ const HomeScreen = ({navigation}) => {
                                 <In in={ins[1]} />
                             */}
                             {ins
-                                .filter((item, index) => index % 2 === 0)
+                                .filter((_, index) => index % 2 === 0)
                                 .map((ins) => (
-                                    <In in={ins} />
+                                    <In in={ins} key={ins.id} />
                             ))}
                         </View>
 
                         <View style={styles.column}>
                             {ins
-                                .filter((item, index) => index % 2 === 1)
+                                .filter((_, index) => index % 2 === 1)
                                 .map((ins) => (
-                                    <In in={ins} />
+                                    <In in={ins} key={ins.id} />
                                 ))}
                         </View>
 
@@ -69,8 +69,6 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold',
         marginTop: 40,
-        marginLeft: 85,
-        textAlign: 'center'
     },
     body: {
         flex: 1,
@@ -82,12 +80,13 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold',
         marginTop: 40,
-        marginRight: 85,
     },
     parent: {
-        alignItems:"center",
         flexDirection: "row",
         justifyContent: "space-around",
+        marginLeft: 100,
+        marginRight: 100,
+
       },
     input: {
         width:270,
@@ -100,7 +99,7 @@ const styles = StyleSheet.create({
       },
     container: {
         flexDirection: "row",
-        padding: 10,
+        padding: 0,
         //flexDirection: "row"
     },
     column: {
