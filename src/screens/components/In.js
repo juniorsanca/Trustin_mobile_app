@@ -11,24 +11,34 @@ import {useState, useEffect} from "react";
 
 import Icon from 'react-native-vector-icons/AntDesign';
 //Icon.loadFont().then();
+import {useNavigation} from '@react-navigation/native'
 
 const In = (props) => {
     //console.log(props)
 
-    const{ image, title} = props.in;
+    const{ id, image, title} = props.in;
 
     const [ratio, setRatio] = useState(1);
-
-    const onLike = () => {};
+    const navigation = useNavigation();
 
     //Image.getSize(image, (width, height) => setRatio(width / height));setRatio
     
     useEffect(() => {
-        Image.getSize(image, (width, height) => setRatio(width / height));
+        if(image){
+            Image.getSize(image, (width, height) => setRatio(width / height));
+        }
     }, [image]);
 
+
+    const onLike = () => {};
+
+    const goToInPage = () => {
+        //console.warn("clicked");
+        navigation.navigate("In", {id});
+    };
+    
     return (
-        <View style={styles.in}>
+        <Pressable onPress={goToInPage} style={styles.in}>
             <View>
                 <Image source={{ uri: image }} style={ [styles.in_image, {aspectRatio: ratio}] }/>
                     
@@ -37,9 +47,8 @@ const In = (props) => {
                 </Pressable>
 
             </View>
-
                 <Text style={styles.in_name} numberOfLines={1}>{title}</Text>
-        </View>
+        </Pressable>
     )
 }
 
@@ -48,7 +57,7 @@ const styles = StyleSheet.create({
     in: {
         width: "100%",
         marginTop: 10,
-        padding: 5
+        padding: 5,
         //flexDirection: "row"
     },
     in_image: {
@@ -57,10 +66,11 @@ const styles = StyleSheet.create({
         //aspectRatio: 1/2
     },
     in_name: {
-        fontSize: 20,
+        fontSize: 16,
         fontWeight: "bold",
         textAlign: "center",
         margin: 5,
+        //color: "grey"
     },
     heartBtns: {
         backgroundColor: '#D3CFD4',
@@ -68,7 +78,7 @@ const styles = StyleSheet.create({
         bottom: 10,
         right: 10,
         padding: 5,
-        borderRadius: 50
+        borderRadius: 50,
 
     },
 

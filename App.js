@@ -7,6 +7,7 @@ import WelcomeScreen from './src/screens/WelcomeScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import RegisterScreen from './src/screens/RegisterScreen';
 import HomeScreen from './src/screens/HomeScreen';
+import InScreen from './src/screens/InScreen';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -35,11 +36,12 @@ const App = () => {
             name="OnboardingScreen" 
             component={OnboardingScreen} />
           )}
-            <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
+            {/*<Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
             <Stack.Screen name="LoginScreen" component={LoginScreen} />
-            <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+            <Stack.Screen name="RegisterScreen" component={RegisterScreen} />*/}
             <Stack.Screen name="HomeScreen" component={HomeScreen} />
-
+            
+            <Stack.Screen name="In" component={InScreen} />
 
         </Stack.Navigator>
       </NavigationContainer>
