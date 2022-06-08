@@ -1,24 +1,16 @@
-import React from "react";
 import {
     Text, 
     View,
     StyleSheet, 
-    Dimensions,
     TextInput,
-    Image,
-    ScrollView
+    TouchableOpacity
 } from 'react-native';
-import { FlatList } from "react-native-gesture-handler";
-//import { ScrollView } from "react-native-gesture-handler";
-//import { color } from "react-native-reanimated";
-import In from "./components/In";
 import ins from "../assets/data/ins";
-
+import React from "react";
+import Influencers from "./components/Influencers";
 
 
 const HomeScreen = ({navigation}) => {
-
-    //const width= (Dimensions.get('window').width/2)-20;
 
     return (
             <View style={styles.body}>
@@ -30,33 +22,15 @@ const HomeScreen = ({navigation}) => {
                 <View style={{margin: 15, alignItems: "center"}}>
                     <TextInput style={styles.input} placeholder="Trouver un T'in" />
                 </View>
+                <TouchableOpacity 
+                                    style={[styles.btn]} 
+                                    onPress={() => navigation.replace('ProfileScreen')}>
+                                    <Text style={{fontWeight: 'bold', fontSize: 15}}>
+                                        GET STARTED
+                                    </Text>
+                                </TouchableOpacity>
 
-                <ScrollView>
-                    <View style={styles.container}>
-                        {/*<FlatList data={ins} renderItem={({item}) => <In in={item} />} numColumns={2} />*/}
-                        <View style={styles.column}>
-                            {/*
-                                <In in={ins[1]} />
-                                <In in={ins[2]} />
-                                <In in={ins[1]} />
-                            */}
-                            {ins
-                                .filter((_, index) => index % 2 === 0)
-                                .map((ins) => (
-                                    <In in={ins} key={ins.id} />
-                            ))}
-                        </View>
-
-                        <View style={styles.column}>
-                            {ins
-                                .filter((_, index) => index % 2 === 1)
-                                .map((ins) => (
-                                    <In in={ins} key={ins.id} />
-                                ))}
-                        </View>
-
-                    </View> 
-                </ScrollView>
+                <Influencers ins={ins} />
             </View>
     );
 };
