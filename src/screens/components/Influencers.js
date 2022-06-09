@@ -1,11 +1,7 @@
 import React from "react";
 import {
-    Text, 
     View,
     StyleSheet, 
-    Dimensions,
-    TextInput,
-    Image,
     ScrollView
 } from 'react-native';
 import In from "./In";

@@ -6,6 +6,8 @@ import OnboardingScreen from '../OnboardingScreen';
 import WelcomeScreen from '../WelcomeScreen';
 import LoginScreen from '../LoginScreen';
 import RegisterScreen from '../RegisterScreen';
+import ForgotPasswordScreen from '../ForgotPasswordScreen';
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -40,6 +42,8 @@ const AuthNav = () => {
             <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
             <Stack.Screen name="LoginScreen" component={LoginScreen} />
             <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+            <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+
 
         </Stack.Navigator>
       </NavigationContainer>
