@@ -75,7 +75,7 @@ const InScreen = () => {
                     <Image source={{ uri: influencer.social3}}  style={[styles.social]}/>
                 </View>
 
-                <View>
+                <View style={styles.rating}>
                     <Rating />
                 </View>
 
@@ -100,6 +100,9 @@ const styles = StyleSheet.create({
         marginTop: 10
         //height: 300
     },
+    rating: {
+        flex: 1
+    },
     iname: {
         textAlign: "center",
         margin:15,
@@ -117,12 +120,12 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
     socials: {
+        marginTop: 15,
         flexDirection: "row",
         //backgroundColor: "red",
         padding: 0,
-        marginTop: 5,
-        marginLeft: 50,
-        marginRight: 30,
+        flex: 1,
+        justifyContent: 'center'
     },
     social: {
         padding: 0,

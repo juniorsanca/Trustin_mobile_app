@@ -55,9 +55,11 @@ const styles = StyleSheet.create({
         fontSize: 23
     },
     startImgStyle: {
-        width: 40,
-        height: 40,
-        resizeMode: 'cover'
+        width: 30,
+        height: 30,
+        resizeMode: 'cover',
+        flex : 1,
+        justifyContent:'center'
     },
 
     search: {
