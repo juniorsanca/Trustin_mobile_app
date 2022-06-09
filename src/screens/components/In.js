@@ -16,7 +16,7 @@ import {useNavigation} from '@react-navigation/native'
 const In = (props) => {
     //console.log(props)
 
-    const{ id, image, title} = props.in;
+    const{ id, image, iname} = props.in;
 
     const [ratio, setRatio] = useState(1);
     const navigation = useNavigation();
@@ -47,7 +47,7 @@ const In = (props) => {
                 </Pressable>
 
             </View>
-                <Text style={styles.in_name} numberOfLines={1}>{title}</Text>
+                <Text style={styles.in_name} numberOfLines={1}>{iname}</Text>
         </Pressable>
     )
 }

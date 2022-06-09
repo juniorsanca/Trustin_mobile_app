@@ -55,10 +55,24 @@ const InScreen = () => {
                     <Text>Influenceurs</Text>
                 </View>
          
-                <Image 
-                    source={{ uri: influencer.image}} 
-                    style={[styles.image, { aspectRatio: ratio }]}/>
-                <Text style={styles.title}>{influencer.title}</Text>
+                <View>
+                    <Image 
+                        source={{ uri: influencer.image}} 
+                        style={[styles.image, { aspectRatio: ratio }]}/>
+                    <Text style={styles.iname}>{influencer.iname}</Text>
+                </View>
+
+                <View>
+                    <Text style={styles.about}>{influencer.about}</Text>
+                </View>
+
+                <View style={styles.socials}>
+                    <Image source={{ uri: influencer.social1}}  style={[styles.social]}/>
+                    <Image source={{ uri: influencer.social2}}  style={[styles.social]}/>
+                    <Image source={{ uri: influencer.social3}}  style={[styles.social]}/>
+
+                </View>
+
             </View>
         </SafeAreaView>
 
@@ -75,22 +89,41 @@ const styles = StyleSheet.create({
     },
     image: {
         width: "100%",
-        borderRadius : 50,
+        borderRadius : 40,
         marginTop: 10
         //height: 300
     },
-    title: {
+    iname: {
         textAlign: "center",
         margin:15,
         fontWeight: "bold",
         fontSize: 15
     },
     arrowleft: {
-        flexDirection: "row"
+        flexDirection: "row",
+        marginBottom: 20
     },
     icon: {
         marginRight: 10
+    },
+    about: {
+        textAlign: "center"
+    },
+    socials: {
+        flexDirection: "row",
+        //backgroundColor: "red",
+        padding: 0,
+        marginTop: 5,
+        marginLeft: 50,
+        marginRight: 30,
+    },
+    social: {
+        padding: 0,
+        width: 50,
+        height: 50,
+        margin: 10
     }
+ 
 });
 
 export default InScreen;
