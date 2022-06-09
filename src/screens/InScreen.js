@@ -1,12 +1,14 @@
 import React from "react";
 
 import {useState, useEffect} from "react";
+import Rating from "./components/Rating";
 
 import {
     Text,
     View,
     StyleSheet,
-    Image
+    Image,
+    ScrollView
 } from 'react-native';
 import { Directions } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -46,6 +48,7 @@ const InScreen = () => {
 
     return (
         <SafeAreaView style={{}}>
+            <ScrollView>
             <View style={styles.root}>
 
                 <View style={styles.arrowleft} >
@@ -73,10 +76,11 @@ const InScreen = () => {
                 </View>
 
                 <View>
-
+                    <Rating />
                 </View>
 
             </View>
+            </ScrollView>
         </SafeAreaView>
 
     );

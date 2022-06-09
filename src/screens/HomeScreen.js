@@ -28,7 +28,6 @@ const HomeScreen = ({navigation}) => {
                     style={[styles.btn]} onPress={() => navigation.navigate('ProfileScreen')}>
                         <Text style={{fontWeight: 'bold', fontSize: 15}}> GET STARTED </Text>
                 </TouchableOpacity>
-
                 */}
         
                 <Influencers ins={ins} />
