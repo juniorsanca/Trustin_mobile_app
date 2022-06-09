@@ -41,7 +41,7 @@ const InScreen = () => {
     };
 
     if (!influencer) {
-        return  <Text>influencer not found</Text>;
+        return  <Text style={styles.notfound}>Influencer not found</Text>;
     }
 
     return (
@@ -73,7 +73,7 @@ const InScreen = () => {
                 </View>
 
                 <View>
-                    
+
                 </View>
 
             </View>
@@ -125,6 +125,12 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
         margin: 10
+    },
+    notfound : {
+        marginLeft: 120,
+        marginRight: 120,
+        marginTop: 200,
+        fontWeight: "bold"
     }
  
 });
