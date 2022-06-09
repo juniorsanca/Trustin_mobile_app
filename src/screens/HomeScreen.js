@@ -23,12 +23,9 @@ const HomeScreen = ({navigation}) => {
                     <TextInput style={styles.input} placeholder="Trouver un T'in" />
                 </View>
                 <TouchableOpacity 
-                                    style={[styles.btn]} 
-                                    onPress={() => navigation.replace('ProfileScreen')}>
-                                    <Text style={{fontWeight: 'bold', fontSize: 15}}>
-                                        GET STARTED
-                                    </Text>
-                                </TouchableOpacity>
+                    style={[styles.btn]} onPress={() => navigation.navigate('ProfileScreen')}>
+                        <Text style={{fontWeight: 'bold', fontSize: 15}}> GET STARTED </Text>
+                </TouchableOpacity>
 
                 <Influencers ins={ins} />
             </View>

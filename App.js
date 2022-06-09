@@ -9,12 +9,19 @@ import RegisterScreen from './src/screens/RegisterScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import InScreen from './src/screens/InScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import AuthNav from './src/screens/navigations/AuthNav';
+import HomeNav from './src/screens/navigations/HomeNav';
 
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const App = () => {
+  const isConnected = true;
+
+
   const [isAppFirstLaunched, setIsAppFirstLaunched] = React.useState(null);
   React.useEffect(async () => {
     const appData = await AsyncStorage.getItem('isAppFirstLaunched');
@@ -28,28 +35,11 @@ const App = () => {
     }
   }, []);
 
-  return (
-    isAppFirstLaunched != null && (
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
-          {isAppFirstLaunched && (
-            <Stack.Screen 
-            name="OnboardingScreen" 
-            component={OnboardingScreen} />
-          )}
-            {/*<Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
-            <Stack.Screen name="LoginScreen" component={LoginScreen} />
-            <Stack.Screen name="RegisterScreen" component={RegisterScreen} />*/}
-            <Stack.Screen name="HomeScreen" component={HomeScreen} />
-            <Stack.Screen name="In" component={InScreen} />
-            <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
-
-
-        </Stack.Navigator>
-      </NavigationContainer>
-    )
-
-  )
+  if (!isConnected ) {
+    return <AuthNav />
+  } else {
+    return <HomeNav />
+  }
 }
 
 export default App;

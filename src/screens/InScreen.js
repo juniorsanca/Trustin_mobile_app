@@ -70,7 +70,10 @@ const InScreen = () => {
                     <Image source={{ uri: influencer.social1}}  style={[styles.social]}/>
                     <Image source={{ uri: influencer.social2}}  style={[styles.social]}/>
                     <Image source={{ uri: influencer.social3}}  style={[styles.social]}/>
+                </View>
 
+                <View>
+                    
                 </View>
 
             </View>
