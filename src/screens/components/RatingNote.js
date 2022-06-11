@@ -10,29 +10,29 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const Rating = () => {
-    const [defaulRating, setdefaultRating] = useState(2)
-    const [maxRating, setmaxRating] = useState([1,2,3,4,5])
+    const [defaulRatingNote, setdefaultRatingNote] = useState(1)
+    const [maxRatingNote, setmaxRating] = useState([1,2,3,4,5])
 
-    const startImgFilled = 'https://raw.githubusercontent.com/juniorsanca/Trustin_mobile_app/main/src/images/starton.png'
-    const startImgCorner = 'https://raw.githubusercontent.com/juniorsanca/Trustin_mobile_app/main/src/images/startoff.png'
+    const startImgFilledNote = 'https://raw.githubusercontent.com/juniorsanca/Trustin_mobile_app/main/src/images/starton.png'
+    const startImgCornerNote = 'https://raw.githubusercontent.com/juniorsanca/Trustin_mobile_app/main/src/images/startoff.png'
 
         return (
             <View style={styles.customRatingBarStyle}>
                 {
-                    maxRating.map((item, key) => {
+                    maxRatingNote.map((item, key) => {
                         return (
                             <TouchableOpacity
                             activeOpacity={0.7}
                             key={item}
-                            onPress={() => setdefaultRating(item)}
+                            onPress={() => setdefaultRatingNote(item)}
                             >
 
                             <Image 
                                 style={styles.startImgStyle}
                                 source={
-                                    item<= defaulRating
-                                    ? {uri: startImgFilled}
-                                    : {uri: startImgCorner}
+                                    item<= defaulRatingNote
+                                    ? {uri: startImgFilledNote}
+                                    : {uri: startImgCornerNote}
                                 }
                             />
 
@@ -49,11 +49,11 @@ const styles = StyleSheet.create({
     customRatingBarStyle : {
         justifyContent: 'center',
         flexDirection: 'row',
-        fontSize: 23
+        fontSize: 10
     },
     startImgStyle: {
-        width: 50,
-        height: 50,
+        width: 35,
+        height: 35,
         resizeMode: 'cover',
         flex : 1,
         justifyContent:'center'

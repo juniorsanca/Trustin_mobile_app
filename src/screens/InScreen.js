@@ -2,6 +2,7 @@ import React from "react";
 
 import {useState, useEffect} from "react";
 import Rating from "./components/Rating";
+import RatingNote from "./components/RatingNote";
 
 import {
     Text,
@@ -10,8 +11,8 @@ import {
     Image,
     ScrollView,
     TextInput,
+    TouchableOpacity
 } from 'react-native';
-import { Directions } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from 'react-native-vector-icons/AntDesign';
 import {useNavigation, useRoute} from '@react-navigation/native'
@@ -22,6 +23,10 @@ import ins from "../assets/data/ins";
 
 
 const InScreen = () => {
+
+    const [defaulRating, setdefaultRating] = useState(2)
+    const [maxRating, setmaxRating] = useState([1,2,3,4,5])
+
     //const influencer = ins[0];
     const [ratio, setRatio] = useState(1);
 
@@ -51,22 +56,18 @@ const InScreen = () => {
         <SafeAreaView style={styles.container}>
             <ScrollView>
             <View style={styles.root}>
-
-                <View style={styles.arrowleft} >
-                    <Pressable onPress={goBack}>
-                        <Icon name="arrowleft" size={20} color="black" style={styles.icon} /> 
-                    </Pressable>
-                    <Text>Influenceurs</Text>
-                </View>
-         
-
                 <View style={styles.iinfo}>
+               
                     <View>
                         <Image 
                             source={{ uri: influencer.image}} 
                             style={[styles.image, { aspectRatio: ratio }]}/>
                         <Text style={styles.iname}>{influencer.iname}</Text>
                     </View>
+
+                    <Pressable onPress={goBack} style={styles.backBtn}>
+                        <Icon name="left" size={25} color="white" style={styles.icon} /> 
+                    </Pressable>
 
                     <View>
                         <Text style={styles.about}>{influencer.about}</Text>
@@ -77,23 +78,104 @@ const InScreen = () => {
                         <Image source={{ uri: influencer.social2}}  style={[styles.social]}/>
                         <Image source={{ uri: influencer.social3}}  style={[styles.social]}/>
                     </View>
+                    <View style={styles.notation}>
+                        <View style={styles.rating}>
+                            <Rating />
+                            <Text style={styles.note}>{defaulRating + '/' + maxRating.length}</Text>
+                        </View>
+                    </View>
                 </View>
+            <View>
+              
 
-            <View >
-                <View style={styles.rating}>
-                    <Rating />
-                </View>
+                <View style={styles.usersCommentCard}>
+                            <View style={styles.userComment}>
+                                <Image source={{ uri: influencer.social1}}  style={[styles.social]}/>
+                                <Text style={styles.uname}>Junior SANCA</Text>
+                                <View style={styles.RatingNote}>
+                                    <RatingNote />
+                                </View>
+                            </View>
 
-                <View style={styles.writeComment}>
-                        <TextInput 
-                            style={styles.input} 
-                            placeholder="My comment" //value="" 
-                        />
+                            <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1}}/>
+                            <TextInput style={styles.input} placeholder="Écrire un avis" />                            
                 </View>
 
                 <View style={styles.usersComments}>
-                    <Text style={styles.comments}>AZERTY ytreza enrjnjk rejkndfjkced fejrkndcj</Text>
+
+                        <View style={styles.usersCommentCard}>
+                            <View style={styles.userComment}>
+                                <Image source={{ uri: influencer.social2}}  style={[styles.social]}/>
+                                <Text style={styles.uname}>Utilisateur</Text>
+                                <View style={styles.RatingNote}>
+                                    <RatingNote />
+                                </View>
+                            </View>
+
+                            <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1}}/>
+
+                            <View style={styles}>
+                                <Text style={styles.comentary}>
+                                    Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. Mode durable et écoresponsable. Produits naturels pour la maison et le bien-être.
+                                </Text>
+                            </View>
+                        </View>
+
+                        <View style={styles.usersCommentCard}>
+                            <View style={styles.userComment}>
+                                <Image source={{ uri: influencer.social3}}  style={[styles.social]}/>
+                                <Text style={styles.uname}>Utilisateur</Text>
+                                <View style={styles.RatingNote}>
+                                    <RatingNote />
+                                </View>
+                            </View>
+
+                            <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1}}/>
+
+                            <View style={styles}>
+                                <Text style={styles.comentary}>
+                                    Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. Mode durable et écoresponsable. Produits naturels pour la maison et le bien-être.
+                                </Text>
+                            </View>
+                        </View>
+
+                        <View style={styles.usersCommentCard}>
+                            <View style={styles.userComment}>
+                                <Image source={{ uri: influencer.social3}}  style={[styles.social]}/>
+                                <Text style={styles.uname}>Utilisateur</Text>
+                                <View style={styles.RatingNote}>
+                                    <RatingNote />
+                                </View>
+                            </View>
+
+                            <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1}}/>
+
+                            <View style={styles}>
+                                <Text style={styles.comentary}>
+                                    Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. Mode durable et écoresponsable. Produits naturels pour la maison et le bien-être.
+                                </Text>
+                            </View>
+                        </View>
+
+                        <View style={styles.usersCommentCard}>
+                            <View style={styles.userComment}>
+                                <Image source={{ uri: influencer.social3}}  style={[styles.social]}/>
+                                <Text style={styles.uname}>Utilisateur</Text>
+                                <View style={styles.RatingNote}>
+                                    <RatingNote />
+                                </View>
+                            </View>
+
+                            <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1}}/>
+
+                            <View style={styles}>
+                                <Text style={styles.comentary}>
+                                    Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. Mode durable et écoresponsable. Produits naturels pour la maison et le bien-être.
+                                </Text>
+                            </View>
+                        </View>
                 </View>
+
             </View>
 
             </View>
@@ -106,16 +188,65 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        marginHorizontal: 16,
+        marginHorizontal: 6,
+      },
+    RatingNote : {
+        marginTop : 12
+      },
+    notation : {
+        marginTop : 10
+      },
+      note: {
+        marginTop: 5,
+        marginLeft: 25,
+        marginBottom: 5,
+        padding: 10,
+        borderColor: '#8A8883',
+        borderWidth: 1,
+        borderRadius: 20
       },
     root: {
         height: "100%",
         borderTopLeftRadius: 50,
         borderTopLeftRadius: 50,
-        marginTop: 15,
+        marginTop: 0,
     },
-    usersComments : {
-        marginTop : 50
+    backBtn : {
+        position: "absolute",
+        top: 20,
+        left: 10,
+    },
+    iinfo : {
+        borderColor: '#FFF',
+        borderWidth: 3,
+        //borderRadius: 30,
+
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+    },
+    usersComments: {
+        marginTop : 10,
+    },
+    usersCommentCard : {
+        marginTop : 0,
+        flex: 1,
+        backgroundColor: "#fff",
+        padding: 10,
+        marginBottom: 5,
+    },
+    userComment : {
+        flexDirection: "row"
+    },
+    comentary : {
+        flexDirection: "row",
+        margin: 20
+    },
+    uname : {
+        fontWeight: "bold",
+        fontSize: 15,
+        marginRight: 10,
+
+        marginTop: 25
     },
     comments : {
         backgroundColor: "green",
@@ -132,25 +263,26 @@ const styles = StyleSheet.create({
       },
     image: {
         width: "100%",
-        borderRadius : 40,
-        marginTop: 10
-        //height: 300
+        borderTopLeftRadius : 30,
+        borderTopRightRadius : 30,
+
     },
     rating: {
         flex: 1,
-        backgroundColor: "#00B67A",
-        padding: 15
+        backgroundColor: "#fff",
+        padding: 15,
+        paddingLeft: 25,
+        marginBottom: 5,
+        flexDirection: "row",
+
     },
     iname: {
         textAlign: "center",
         margin:15,
         fontWeight: "bold",
-        fontSize: 15
+        fontSize: 25
     },
-    arrowleft: {
-        flexDirection: "row",
-        marginBottom: 20
-    },
+
     icon: {
         marginRight: 10
     },
