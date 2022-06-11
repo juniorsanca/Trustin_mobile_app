@@ -1,9 +1,6 @@
 import {
-    Text, 
     View,
     StyleSheet, 
-    TextInput,
-    SafeAreaView,
     Image,
 
 } from 'react-native';
@@ -55,8 +52,8 @@ const styles = StyleSheet.create({
         fontSize: 23
     },
     startImgStyle: {
-        width: 30,
-        height: 30,
+        width: 50,
+        height: 50,
         resizeMode: 'cover',
         flex : 1,
         justifyContent:'center'

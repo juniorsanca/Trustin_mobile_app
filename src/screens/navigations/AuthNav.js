@@ -42,7 +42,7 @@ const AuthNav = () => {
             <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
             <Stack.Screen name="LoginScreen" component={LoginScreen} />
             <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
-            <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+            <Stack.Screen name="ForgotPasswordScreen" component={ForgotPasswordScreen} />
 
 
         </Stack.Navigator>

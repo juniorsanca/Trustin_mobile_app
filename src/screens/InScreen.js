@@ -8,7 +8,8 @@ import {
     View,
     StyleSheet,
     Image,
-    ScrollView
+    ScrollView,
+    TextInput,
 } from 'react-native';
 import { Directions } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -47,7 +48,7 @@ const InScreen = () => {
     }
 
     return (
-        <SafeAreaView style={{}}>
+        <SafeAreaView style={styles.container}>
             <ScrollView>
             <View style={styles.root}>
 
@@ -58,42 +59,77 @@ const InScreen = () => {
                     <Text>Influenceurs</Text>
                 </View>
          
-                <View>
-                    <Image 
-                        source={{ uri: influencer.image}} 
-                        style={[styles.image, { aspectRatio: ratio }]}/>
-                    <Text style={styles.iname}>{influencer.iname}</Text>
+
+                <View style={styles.iinfo}>
+                    <View>
+                        <Image 
+                            source={{ uri: influencer.image}} 
+                            style={[styles.image, { aspectRatio: ratio }]}/>
+                        <Text style={styles.iname}>{influencer.iname}</Text>
+                    </View>
+
+                    <View>
+                        <Text style={styles.about}>{influencer.about}</Text>
+                    </View>
+
+                    <View style={styles.socials}>
+                        <Image source={{ uri: influencer.social1}}  style={[styles.social]}/>
+                        <Image source={{ uri: influencer.social2}}  style={[styles.social]}/>
+                        <Image source={{ uri: influencer.social3}}  style={[styles.social]}/>
+                    </View>
                 </View>
 
-                <View>
-                    <Text style={styles.about}>{influencer.about}</Text>
-                </View>
-
-                <View style={styles.socials}>
-                    <Image source={{ uri: influencer.social1}}  style={[styles.social]}/>
-                    <Image source={{ uri: influencer.social2}}  style={[styles.social]}/>
-                    <Image source={{ uri: influencer.social3}}  style={[styles.social]}/>
-                </View>
-
+            <View >
                 <View style={styles.rating}>
                     <Rating />
                 </View>
 
+                <View style={styles.writeComment}>
+                        <TextInput 
+                            style={styles.input} 
+                            placeholder="My comment" //value="" 
+                        />
+                </View>
+
+                <View style={styles.usersComments}>
+                    <Text style={styles.comments}>AZERTY ytreza enrjnjk rejkndfjkced fejrkndcj</Text>
+                </View>
+            </View>
+
             </View>
             </ScrollView>
         </SafeAreaView>
-
     );
 };
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        marginHorizontal: 16,
+      },
     root: {
         height: "100%",
         borderTopLeftRadius: 50,
         borderTopLeftRadius: 50,
-        margin: 30,
-
+        marginTop: 15,
     },
+    usersComments : {
+        marginTop : 50
+    },
+    comments : {
+        backgroundColor: "green",
+        fontWeight: "bold",
+        fontSize: 15,
+    },
+    input: {
+        height: 56,
+        backgroundColor: '#fff',
+        borderRadius: 0,
+        borderWidth: 1,
+        borderColor: '#fff',
+        paddingLeft: 30,
+      },
     image: {
         width: "100%",
         borderRadius : 40,
@@ -101,7 +137,9 @@ const styles = StyleSheet.create({
         //height: 300
     },
     rating: {
-        flex: 1
+        flex: 1,
+        backgroundColor: "#00B67A",
+        padding: 15
     },
     iname: {
         textAlign: "center",
@@ -125,7 +163,8 @@ const styles = StyleSheet.create({
         //backgroundColor: "red",
         padding: 0,
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        padding: 15
     },
     social: {
         padding: 0,
