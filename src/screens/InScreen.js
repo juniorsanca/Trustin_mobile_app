@@ -53,11 +53,12 @@ const InScreen = () => {
     }
 
     return (
+        <ScrollView>
+
         <SafeAreaView style={styles.container}>
-            <ScrollView>
             <View style={styles.root}>
                 <View style={styles.iinfo}>
-               
+
                     <View>
                         <Image 
                             source={{ uri: influencer.image}} 
@@ -78,16 +79,16 @@ const InScreen = () => {
                         <Image source={{ uri: influencer.social2}}  style={[styles.social]}/>
                         <Image source={{ uri: influencer.social3}}  style={[styles.social]}/>
                     </View>
-                    <View style={styles.notation}>
+                    
+                </View>
+                <View style={styles.notation}>
                         <View style={styles.rating}>
                             <Rating />
                             <Text style={styles.note}>{defaulRating + '/' + maxRating.length}</Text>
                         </View>
                     </View>
-                </View>
             <View>
               
-
                 <View style={styles.usersCommentCard}>
                             <View style={styles.userComment}>
                                 <Image source={{ uri: influencer.social1}}  style={[styles.social]}/>
@@ -102,85 +103,71 @@ const InScreen = () => {
                 </View>
 
                 <View style={styles.usersComments}>
-
                         <View style={styles.usersCommentCard}>
                             <View style={styles.userComment}>
-                                <Image source={{ uri: influencer.social2}}  style={[styles.social]}/>
-                                <Text style={styles.uname}>Utilisateur</Text>
-                                <View style={styles.RatingNote}>
-                                    <RatingNote />
+                                <View style={{ flexDirection : "row"}}>
+                                    <Image source={{ uri: influencer.social3}} style={[styles.social]}/>
+                                    <Text style={styles.uname}>Utilisateur12</Text>
                                 </View>
                             </View>
-
-                            <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1}}/>
-
-                            <View style={styles}>
+                               
+                            <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
+                            
+                            <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
+                                <RatingNote />
+                            </View>
+                            <View>
                                 <Text style={styles.comentary}>
-                                    Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. Mode durable et écoresponsable. Produits naturels pour la maison et le bien-être.
+                                    Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
                                 </Text>
                             </View>
                         </View>
 
                         <View style={styles.usersCommentCard}>
                             <View style={styles.userComment}>
-                                <Image source={{ uri: influencer.social3}}  style={[styles.social]}/>
-                                <Text style={styles.uname}>Utilisateur</Text>
-                                <View style={styles.RatingNote}>
-                                    <RatingNote />
+                                <View style={{ flexDirection : "row"}}>
+                                    <Image source={{ uri: influencer.social3}} style={[styles.social]}/>
+                                    <Text style={styles.uname}>Utilisateur12</Text>
                                 </View>
                             </View>
-
-                            <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1}}/>
-
-                            <View style={styles}>
+                               
+                            <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
+                            
+                            <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
+                                <RatingNote />
+                            </View>
+                            <View>
                                 <Text style={styles.comentary}>
-                                    Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. Mode durable et écoresponsable. Produits naturels pour la maison et le bien-être.
+                                    Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
                                 </Text>
                             </View>
                         </View>
 
                         <View style={styles.usersCommentCard}>
                             <View style={styles.userComment}>
-                                <Image source={{ uri: influencer.social3}}  style={[styles.social]}/>
-                                <Text style={styles.uname}>Utilisateur</Text>
-                                <View style={styles.RatingNote}>
-                                    <RatingNote />
+                                <View style={{ flexDirection : "row"}}>
+                                    <Image source={{ uri: influencer.social3}} style={[styles.social]}/>
+                                    <Text style={styles.uname}>Utilisateur12</Text>
                                 </View>
                             </View>
-
-                            <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1}}/>
-
-                            <View style={styles}>
+                               
+                            <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
+                            
+                            <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
+                                <RatingNote />
+                            </View>
+                            <View>
                                 <Text style={styles.comentary}>
-                                    Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. Mode durable et écoresponsable. Produits naturels pour la maison et le bien-être.
+                                    Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
                                 </Text>
                             </View>
                         </View>
-
-                        <View style={styles.usersCommentCard}>
-                            <View style={styles.userComment}>
-                                <Image source={{ uri: influencer.social3}}  style={[styles.social]}/>
-                                <Text style={styles.uname}>Utilisateur</Text>
-                                <View style={styles.RatingNote}>
-                                    <RatingNote />
-                                </View>
-                            </View>
-
-                            <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1}}/>
-
-                            <View style={styles}>
-                                <Text style={styles.comentary}>
-                                    Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. Mode durable et écoresponsable. Produits naturels pour la maison et le bien-être.
-                                </Text>
-                            </View>
-                        </View>
+                    </View>
                 </View>
-
             </View>
-
-            </View>
-            </ScrollView>
         </SafeAreaView>
+        </ScrollView>
+
     );
 };
 
@@ -188,13 +175,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        marginHorizontal: 6,
+        marginHorizontal: 0,
       },
     RatingNote : {
-        marginTop : 12
+        marginTop : 0
       },
     notation : {
-        marginTop : 10
+        margin : 10,
       },
       note: {
         marginTop: 5,
@@ -207,8 +194,9 @@ const styles = StyleSheet.create({
       },
     root: {
         height: "100%",
-        borderTopLeftRadius: 50,
-        borderTopLeftRadius: 50,
+        //borderTopLeftRadius: 50,
+        //borderTopLeftRadius: 50,
+        border: 50,
         marginTop: 0,
     },
     backBtn : {
@@ -219,10 +207,10 @@ const styles = StyleSheet.create({
     iinfo : {
         borderColor: '#FFF',
         borderWidth: 3,
-        //borderRadius: 30,
+        borderRadius: 30,
 
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
+        //borderTopLeftRadius: 30,
+        //borderTopRightRadius: 30,
     },
     usersComments: {
         marginTop : 10,
@@ -239,11 +227,18 @@ const styles = StyleSheet.create({
     },
     comentary : {
         flexDirection: "row",
-        margin: 20
+        marginLeft: 20,
+        marginRight: 20,
+        marginTop: 10
+    },
+    date : {
+        flexDirection: "row",
+        marginLeft: 20,
+        marginRight: 20,
     },
     uname : {
         fontWeight: "bold",
-        fontSize: 15,
+        fontSize: 13,
         marginRight: 10,
 
         marginTop: 25
@@ -287,10 +282,11 @@ const styles = StyleSheet.create({
         marginRight: 10
     },
     about: {
-        textAlign: "center"
+        textAlign: "center",
+        margin: 15
     },
     socials: {
-        marginTop: 15,
+        marginTop: 0,
         flexDirection: "row",
         //backgroundColor: "red",
         padding: 0,
@@ -302,7 +298,7 @@ const styles = StyleSheet.create({
         padding: 0,
         width: 50,
         height: 50,
-        margin: 10
+        margin: 5
     },
     notfound : {
         marginLeft: 120,

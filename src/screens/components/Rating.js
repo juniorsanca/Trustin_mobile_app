@@ -13,9 +13,6 @@ const Rating = () => {
     const [defaulRating, setdefaultRating] = useState(2)
     const [maxRating, setmaxRating] = useState([1,2,3,4,5])
 
-    const startImgFilled = 'https://raw.githubusercontent.com/juniorsanca/Trustin_mobile_app/main/src/images/starton.png'
-    const startImgCorner = 'https://raw.githubusercontent.com/juniorsanca/Trustin_mobile_app/main/src/images/startoff.png'
-
         return (
             <View style={styles.customRatingBarStyle}>
                 {
@@ -31,8 +28,8 @@ const Rating = () => {
                                 style={styles.startImgStyle}
                                 source={
                                     item<= defaulRating
-                                    ? {uri: startImgFilled}
-                                    : {uri: startImgCorner}
+                                    ?  require('../../images/starton.png')
+                                    :  require('../../images/startoff.png')
                                 }
                             />
 
