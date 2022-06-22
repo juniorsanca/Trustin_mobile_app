@@ -2,7 +2,7 @@ import React from "react";
 import {
     View,
     StyleSheet, 
-    ScrollView
+    ScrollView,
 } from 'react-native';
 import In from "./In";
 

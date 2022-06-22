@@ -43,7 +43,7 @@ const In = (props) => {
                 <Image source={{ uri: image }} style={ [styles.in_image, {aspectRatio: ratio}] }/>
                     
                 <Pressable onPress={onLike} style={styles.heartBtns}>
-                    <Icon name="hearto" size={20} color="black" />
+                    <Icon name="staro" size={20} color="black" />
                 </Pressable>
 
             </View>
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     },
     in_image: {
         borderRadius: 10,
-        width: "100%", 
+        width: "100%",
         //aspectRatio: 1/2
     },
     in_name: {
@@ -79,7 +79,6 @@ const styles = StyleSheet.create({
         right: 10,
         padding: 5,
         borderRadius: 50,
-
     },
 
 

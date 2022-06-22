@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
         fontSize: 23
     },
     startImgStyle: {
-        width: 50,
-        height: 50,
+        width: 30,
+        height: 30,
         resizeMode: 'cover',
         flex : 1,
         justifyContent:'center'

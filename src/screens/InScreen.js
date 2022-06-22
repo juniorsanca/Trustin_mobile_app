@@ -3,6 +3,8 @@ import React from "react";
 import {useState, useEffect} from "react";
 import Rating from "./components/Rating";
 import RatingNote from "./components/RatingNote";
+import RatingNotes from "./components/RatingNotes";
+import Influencers from "./components/Influencers";
 
 import {
     Text,
@@ -11,7 +13,8 @@ import {
     Image,
     ScrollView,
     TextInput,
-    TouchableOpacity
+    TouchableOpacity,
+    Button
 } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -54,20 +57,23 @@ const InScreen = () => {
 
     return (
         <ScrollView>
-
         <SafeAreaView style={styles.container}>
             <View style={styles.root}>
-                <View style={styles.iinfo}>
 
+                <View style={styles.iinfo}>
                     <View>
-                        <Image 
-                            source={{ uri: influencer.image}} 
-                            style={[styles.image, { aspectRatio: ratio }]}/>
-                        <Text style={styles.iname}>{influencer.iname}</Text>
+                        <Image source={{ uri: influencer.image}} style={[styles.image, { aspectRatio: ratio }]}/>
+
+                        <View style={{marginTop: 20, flexDirection: "row"}}>
+                            <Icon name="message1" size={35} color="black" style={{marginLeft: 15}} /> 
+                            <Icon name="staro" size={35} color="black"  style={{position: 'absolute', right: 0, marginRight: 15}}/> 
+                        </View>
+                        <Text style={{fontSize:20, fontWeight: "bold", marginLeft: 145, marginBottom: 15, marginTop: -30}}>{influencer.iname}</Text>
+
                     </View>
 
                     <Pressable onPress={goBack} style={styles.backBtn}>
-                        <Icon name="left" size={25} color="white" style={styles.icon} /> 
+                        <Icon name="left" size={25} color="black" /> 
                     </Pressable>
 
                     <View>
@@ -79,42 +85,32 @@ const InScreen = () => {
                         <Image source={{ uri: influencer.social2}}  style={[styles.social]}/>
                         <Image source={{ uri: influencer.social3}}  style={[styles.social]}/>
                     </View>
-                    
+
                 </View>
+
                 <View style={styles.notation}>
                         <View style={styles.rating}>
                             <Rating />
                             <Text style={styles.note}>{defaulRating + '/' + maxRating.length}</Text>
+                            <Icon name="infocirlceo" size={25} color="black" style={styles.icon} /> 
+                            <Text style={{margin: 5}}>Avis 428</Text>
                         </View>
-                    </View>
+                </View>
             <View>
               
-                <View style={styles.usersCommentCard}>
-                            <View style={styles.userComment}>
-                                <Image source={{ uri: influencer.social1}}  style={[styles.social]}/>
-                                <Text style={styles.uname}>Junior SANCA</Text>
-                                <View style={styles.RatingNote}>
-                                    <RatingNote />
-                                </View>
-                            </View>
-
-                            <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1}}/>
-                            <TextInput style={styles.input} placeholder="Écrire un avis" />                            
-                </View>
-
                 <View style={styles.usersComments}>
                         <View style={styles.usersCommentCard}>
                             <View style={styles.userComment}>
                                 <View style={{ flexDirection : "row"}}>
-                                    <Image source={{ uri: influencer.social3}} style={[styles.social]}/>
-                                    <Text style={styles.uname}>Utilisateur12</Text>
+                                    <Image source={{ uri: influencer.social3}} style={[styles.userProfile]}/>
+                                    <Text style={styles.uname}>Utilisateur1</Text>
                                 </View>
                             </View>
                                
                             <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
                             
                             <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
-                                <RatingNote />
+                                <RatingNotes />
                             </View>
                             <View>
                                 <Text style={styles.comentary}>
@@ -126,15 +122,15 @@ const InScreen = () => {
                         <View style={styles.usersCommentCard}>
                             <View style={styles.userComment}>
                                 <View style={{ flexDirection : "row"}}>
-                                    <Image source={{ uri: influencer.social3}} style={[styles.social]}/>
-                                    <Text style={styles.uname}>Utilisateur12</Text>
+                                    <Image source={{ uri: influencer.social3}} style={[styles.userProfile]}/>
+                                    <Text style={styles.uname}>Utilisateur2</Text>
                                 </View>
                             </View>
                                
                             <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
                             
                             <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
-                                <RatingNote />
+                                <RatingNotes />
                             </View>
                             <View>
                                 <Text style={styles.comentary}>
@@ -146,22 +142,24 @@ const InScreen = () => {
                         <View style={styles.usersCommentCard}>
                             <View style={styles.userComment}>
                                 <View style={{ flexDirection : "row"}}>
-                                    <Image source={{ uri: influencer.social3}} style={[styles.social]}/>
-                                    <Text style={styles.uname}>Utilisateur12</Text>
+                                    <Image source={{ uri: influencer.social3}} style={[styles.userProfile]}/>
+                                    <Text style={styles.uname}>Utilisateur3</Text>
                                 </View>
                             </View>
                                
                             <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
                             
                             <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
-                                <RatingNote />
+                                <RatingNotes />
                             </View>
                             <View>
                                 <Text style={styles.comentary}>
-                                    Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
+                                    Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme123. 
                                 </Text>
                             </View>
                         </View>
+                        <Influencers ins={ins}/>
+
                     </View>
                 </View>
             </View>
@@ -178,39 +176,38 @@ const styles = StyleSheet.create({
         marginHorizontal: 0,
       },
     RatingNote : {
-        marginTop : 0
-      },
-    notation : {
-        margin : 10,
+        marginTop : 20
       },
       note: {
-        marginTop: 5,
-        marginLeft: 25,
-        marginBottom: 5,
-        padding: 10,
-        borderColor: '#8A8883',
-        borderWidth: 1,
-        borderRadius: 20
+        marginTop: 1,
+        marginLeft: 5,
+        marginRight: 10,
+        marginBottom: 1,
+        padding: 5,
       },
     root: {
         height: "100%",
         //borderTopLeftRadius: 50,
         //borderTopLeftRadius: 50,
-        border: 50,
+        border: 0,
         marginTop: 0,
     },
     backBtn : {
+        backgroundColor: 'white',
+        padding: 6,
+        borderRadius: 30,
         position: "absolute",
         top: 20,
         left: 10,
     },
     iinfo : {
         borderColor: '#FFF',
+        backgroundColor: "#fff",
         borderWidth: 3,
-        borderRadius: 30,
+        //borderRadius: 30,
 
-        //borderTopLeftRadius: 30,
-        //borderTopRightRadius: 30,
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
     },
     usersComments: {
         marginTop : 10,
@@ -257,33 +254,33 @@ const styles = StyleSheet.create({
         paddingLeft: 30,
       },
     image: {
-        width: "100%",
+        width:"100%",
+        //height: "50%",
         borderTopLeftRadius : 30,
         borderTopRightRadius : 30,
-
+        
+        //borderRadius: 300
     },
     rating: {
         flex: 1,
         backgroundColor: "#fff",
-        padding: 15,
-        paddingLeft: 25,
-        marginBottom: 5,
+        padding: 25,
+        paddingLeft: 40,
         flexDirection: "row",
+        marginTop: 3
 
     },
     iname: {
         textAlign: "center",
-        margin:15,
         fontWeight: "bold",
         fontSize: 25
     },
 
-    icon: {
-        marginRight: 10
-    },
     about: {
         textAlign: "center",
-        margin: 15
+        marginTop: 15,
+        marginLeft: 30,
+        marginRight: 30
     },
     socials: {
         marginTop: 0,
@@ -296,16 +293,33 @@ const styles = StyleSheet.create({
     },
     social: {
         padding: 0,
-        width: 50,
-        height: 50,
-        margin: 5
+        width: 40,
+        height: 40,
+        margin: 3
+    },
+    userProfile :{
+        padding: 0,
+        width: 35,
+        height: 35,
+        margin: 5,
+        margin: 17
     },
     notfound : {
         marginLeft: 120,
         marginRight: 120,
         marginTop: 200,
         fontWeight: "bold"
-    }
+    },
+
+
+    heartBtns: {
+        backgroundColor: '#D3CFD4',
+        position: 'absolute',
+        bottom: 10,
+        right: 10,
+        padding: 5,
+        borderRadius: 50,
+    },
  
 });
 
