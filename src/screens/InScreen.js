@@ -4,6 +4,7 @@ import {useState, useEffect} from "react";
 import Rating from "./components/Rating";
 import RatingNote from "./components/RatingNote";
 import RatingNotes from "./components/RatingNotes";
+import BottomSheet from "./components/BottomSheet";
 
 import { Text, View, StyleSheet, Image, ScrollView, TextInput, TouchableOpacity
 } from 'react-native';
@@ -15,6 +16,8 @@ import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
 import ins from "../assets/data/ins";
 import Influencers from "./components/Influencers";
+
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 
 
@@ -50,6 +53,7 @@ const InScreen = () => {
     }
 
     return (
+        <GestureHandlerRootView style={{flex: 1}}>
         <ScrollView>
         <SafeAreaView style={styles.container}>
 
@@ -161,12 +165,15 @@ const InScreen = () => {
         </SafeAreaView>
         </ScrollView>
 
+        <BottomSheet />
+        </GestureHandlerRootView>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        //backgroundColor: '#000',
         justifyContent: 'center',
         marginHorizontal: 0,
       },
