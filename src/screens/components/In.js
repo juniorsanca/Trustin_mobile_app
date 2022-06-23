@@ -45,9 +45,12 @@ const In = (props) => {
                 <Pressable onPress={onLike} style={styles.heartBtns}>
                     <Icon name="staro" size={20} color="black" />
                 </Pressable>
-
             </View>
-                <Text style={styles.in_name} numberOfLines={1}>{iname}</Text>
+            <View style={styles.iname_container}>
+                <Text style={styles.in_name}>
+                    2/5
+                </Text>
+            </View>
         </Pressable>
     )
 }
@@ -56,20 +59,23 @@ const styles = StyleSheet.create({
 
     in: {
         width: "100%",
-        marginTop: 10,
-        padding: 5,
+        marginTop: 0,
+        padding: 3,
+        position: "relative"
         //flexDirection: "row"
     },
     in_image: {
-        borderRadius: 10,
+        borderRadius: 20,
         width: "100%",
         //aspectRatio: 1/2
     },
     in_name: {
-        fontSize: 16,
+        fontSize: 13,
         fontWeight: "bold",
         textAlign: "center",
         margin: 5,
+        color: "white"
+        
         //color: "grey"
     },
     heartBtns: {
@@ -81,7 +87,20 @@ const styles = StyleSheet.create({
         borderRadius: 50,
     },
 
-
+    iname_container: {
+        position: "absolute",
+        top: 13,
+        left: 12,
+        backgroundColor: "#575A5F",
+        borderWidth: 1.5,
+        borderColor: '#52FB73',
+        borderRadius: 50,
+        width: 35,
+        height: 35,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+    }
 })
 
 export default In

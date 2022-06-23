@@ -7,17 +7,22 @@ import Animated, { useAnimatedStyle, useSharedValue } from 'react-native-reanima
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 const BottomSheet = () => {
+    const translateY = useSharedValue(0)
 
-    const translationY = useSharedValue(0)
-
-    const gesture = Gesture.Pan().onUpdate((event) => {
+    const context = useSharedValue({ y: 0 })
+    const gesture = Gesture.Pan()
+        .onStart(() => {
+            context.value = { y: translateY.value };
+        })
+        .onUpdate((event) => {
+        translateY.value = event.translationY + context.value;
+        translateY.value = Math.max(translateY.value, -SCREEN_HEIGHT);
         //console.log(event.translationY);
-        translationY.value = event.translationY;
     });
 
     const rBottomSheetStyle = useAnimatedStyle(() => {
         return {
-            transform: [{ translateY: translationY.value}],
+            transform: [{ translateY: translateY.value}],
         };
     });
 
@@ -37,7 +42,7 @@ const styles = StyleSheet.create({
         width: '100%',
         backgroundColor: '#edeeff',
         position: 'absolute',
-        top: SCREEN_HEIGHT / 1.5,
+        top: SCREEN_HEIGHT,
         borderRadius: 35
     },
     line: {
