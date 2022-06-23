@@ -4,17 +4,8 @@ import {useState, useEffect} from "react";
 import Rating from "./components/Rating";
 import RatingNote from "./components/RatingNote";
 import RatingNotes from "./components/RatingNotes";
-import Influencers from "./components/Influencers";
 
-import {
-    Text,
-    View,
-    StyleSheet,
-    Image,
-    ScrollView,
-    TextInput,
-    TouchableOpacity,
-    Button
+import { Text, View, StyleSheet, Image, ScrollView, TextInput, TouchableOpacity
 } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -23,9 +14,12 @@ import {useNavigation, useRoute} from '@react-navigation/native'
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
 import ins from "../assets/data/ins";
+import Influencers from "./components/Influencers";
+
 
 
 const InScreen = () => {
+
 
     const [defaulRating, setdefaultRating] = useState(2)
     const [maxRating, setmaxRating] = useState([1,2,3,4,5])
@@ -58,22 +52,22 @@ const InScreen = () => {
     return (
         <ScrollView>
         <SafeAreaView style={styles.container}>
-            <View style={styles.root}>
 
+            <View style={styles.root}>
                 <View style={styles.iinfo}>
                     <View>
                         <Image source={{ uri: influencer.image}} style={[styles.image, { aspectRatio: ratio }]}/>
 
                         <View style={{marginTop: 20, flexDirection: "row"}}>
-                            <Icon name="message1" size={35} color="black" style={{marginLeft: 15}} /> 
-                            <Icon name="staro" size={35} color="black"  style={{position: 'absolute', right: 0, marginRight: 15}}/> 
+                            <Icon name="message1" size={25} color="black" style={{marginLeft: 15}} /> 
+                            <Icon name="staro" size={25} color="black"  style={{position: 'absolute', right: 0, marginRight: 15}}/> 
                         </View>
-                        <Text style={{fontSize:20, fontWeight: "bold", marginLeft: 145, marginBottom: 15, marginTop: -30}}>{influencer.iname}</Text>
+                        <Text style={{fontSize:20, fontWeight: "bold", marginLeft: 150, marginBottom: 15, marginTop: -30}}>{influencer.iname}</Text>
 
                     </View>
 
                     <Pressable onPress={goBack} style={styles.backBtn}>
-                        <Icon name="left" size={25} color="black" /> 
+                        <Icon name="left" size={20} color="black" /> 
                     </Pressable>
 
                     <View>
@@ -158,6 +152,7 @@ const InScreen = () => {
                                 </Text>
                             </View>
                         </View>
+
                         <Influencers ins={ins}/>
 
                     </View>
@@ -174,6 +169,12 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         marginHorizontal: 0,
+      },
+      containery: {
+        flex: 1,
+        backgroundColor: 'grey',
+        alignItems: 'center',
+        justifyContent: 'c'
       },
     RatingNote : {
         marginTop : 20

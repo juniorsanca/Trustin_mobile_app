@@ -42,7 +42,7 @@ const HomeNav = () => {
                 <Icon name="home" size={20} color="black" /> ), }} />
             
             <Tab.Screen name="In" component={InScreen} options={{ tabBarLabel: 'Influencer', tabBarIcon: ({ color, size }) => (
-                <Icon name="staro" size={20} color="black" /> ), }} />
+                <Icon name="hearto" size={20} color="black" /> ), }} />
 
             <Tab.Screen name="ProfileScreen" component={ProfileScreen} options={{ tabBarLabel: 'Profile', tabBarIcon: ({ color, size }) => (
                 <Icon name="user" size={20} color="black" /> ), }} />
