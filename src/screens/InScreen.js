@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useCallback, useRef } from "react";
 
 import {useState, useEffect} from "react";
 import Rating from "./components/Rating";
 import RatingNote from "./components/RatingNote";
 import RatingNotes from "./components/RatingNotes";
-import BottomSheet from "./components/BottomSheet";
-
-import { Text, View, StyleSheet, Image, ScrollView, TextInput, TouchableOpacity
+import { Text, View, StyleSheet, Image, ScrollView, TextInput, TouchableOpacity, Button
 } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -17,12 +15,12 @@ import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 import ins from "../assets/data/ins";
 import Influencers from "./components/Influencers";
 
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { Modalize } from 'react-native-modalize';
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 
 
 const InScreen = () => {
-
 
     const [defaulRating, setdefaultRating] = useState(2)
     const [maxRating, setmaxRating] = useState([1,2,3,4,5])
@@ -52,10 +50,18 @@ const InScreen = () => {
         return  <Text style={styles.notfound}>Influencer not found</Text>;
     }
 
+const modalizeRef = useRef(null);
+const onOpen = () => {
+    modalizeRef.current?.open();
+  };
+const onClose = () => {
+    modalizeRef.current?.close();
+
+}
+
     return (
-        <GestureHandlerRootView style={{flex: 1}}>
-        <ScrollView>
         <SafeAreaView style={styles.container}>
+        <ScrollView>
 
             <View style={styles.root}>
                 <View style={styles.iinfo}>
@@ -63,7 +69,11 @@ const InScreen = () => {
                         <Image source={{ uri: influencer.image}} style={[styles.image, { aspectRatio: ratio }]}/>
 
                         <View style={{marginTop: 20, flexDirection: "row"}}>
-                            <Icon name="message1" size={25} color="black" style={{marginLeft: 15}} /> 
+
+                            <TouchableOpacity>
+                                <Icon name="message1" size={25} color="red" style={{marginLeft: 15}} /> 
+                            </TouchableOpacity>
+
                             <Icon name="staro" size={25} color="black"  style={{position: 'absolute', right: 0, marginRight: 15}}/> 
                         </View>
                         <Text style={{fontSize:20, fontWeight: "bold", marginLeft: 150, marginBottom: 15, marginTop: -30}}>{influencer.iname}</Text>
@@ -86,7 +96,7 @@ const InScreen = () => {
 
                 </View>
 
-                <View style={styles.notation}>
+                <View>
                         <View style={styles.rating}>
                             <Rating />
                             <Text style={styles.note}>{defaulRating + '/' + maxRating.length}</Text>
@@ -94,79 +104,227 @@ const InScreen = () => {
                             <Text style={{margin: 5}}>Avis 428</Text>
                         </View>
                 </View>
-            <View>
-              
+
+                <View>
+                        <View style={styles.rating}>
+                            <View style={styles.usersCommentCard}>
+                            <Text style={{left: 55, marginTop:20, fontWeight: "bold", fontSize: 20}}>Patagez vos expériences</Text>
+
+                                <View style={styles.userComment}>
+                                    <View style={{ flexDirection : "row"}}>
+                                        <Image source={{ uri: influencer.social3}} style={[styles.userProfile]}/>
+                                        <Text style={styles.uname}>Utilisateur2</Text>
+                                    </View>
+                                </View>
+                                
+                                <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
+                                
+                                <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
+                                    <RatingNotes />
+                                </View>
+                                <View>
+                                    <Text style={styles.comentary}>
+                                        Boutique en ligne de vêtements bio, naturels et écologiques en laine,
+                                        soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
+                                    </Text>
+                                </View>
+
+                            <View style={{marginLeft: 70, marginRight: 70, marginTop:20}}>
+                                <TouchableOpacity style={{
+                                            backgroundColor:"#DFE2E8", 
+                                            borderRadius: 20, }}
+                                            onPress={onOpen}>
+                                        <Text 
+                                            style={{
+                                                textAlign: "center",
+                                                fontSize: 15,
+                                                paddingVertical: 10,
+                                                color: "black",
+                                                //borderWidth: 3,
+                                                }}>En voir plus
+                                        </Text>                                 
+                                </TouchableOpacity>
+                            </View>
+
+                            </View>
+                        </View>
+                </View>
+
+
+                <View style={{backgroundColor: "white"}}>
+                    <Influencers ins={ins}/>
+                </View>
+
+
+            </View>
+            </ScrollView>
+
+
+
+            <Modalize ref={modalizeRef} 
+                    scrollViewProps={ {showsVerticalScroollIndicator: false}}
+                    onScrollBeginDrag={false}
+                    withHandle={false}
+                    HeaderComponent= {
+                        <View>
+                            <TouchableOpacity
+                            onPress={onClose}
+                            style={styles.modalHeader}>
+                                <View style={styles.barClose}></View>
+
+                            </TouchableOpacity>
+                        </View>
+                    }
+                       modalHeight={700}
+                       snapPoint={900}>
+
+                <ScrollView style={styles.modal}>
                 <View style={styles.usersComments}>
-                        <View style={styles.usersCommentCard}>
-                            <View style={styles.userComment}>
-                                <View style={{ flexDirection : "row"}}>
-                                    <Image source={{ uri: influencer.social3}} style={[styles.userProfile]}/>
-                                    <Text style={styles.uname}>Utilisateur1</Text>
-                                </View>
-                            </View>
-                               
-                            <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
-                            
-                            <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
-                                <RatingNotes />
-                            </View>
-                            <View>
-                                <Text style={styles.comentary}>
-                                    Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
-                                </Text>
-                            </View>
-                        </View>
-
-                        <View style={styles.usersCommentCard}>
-                            <View style={styles.userComment}>
-                                <View style={{ flexDirection : "row"}}>
-                                    <Image source={{ uri: influencer.social3}} style={[styles.userProfile]}/>
-                                    <Text style={styles.uname}>Utilisateur2</Text>
-                                </View>
-                            </View>
-                               
-                            <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
-                            
-                            <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
-                                <RatingNotes />
-                            </View>
-                            <View>
-                                <Text style={styles.comentary}>
-                                    Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
-                                </Text>
-                            </View>
-                        </View>
-
-                        <View style={styles.usersCommentCard}>
-                            <View style={styles.userComment}>
-                                <View style={{ flexDirection : "row"}}>
-                                    <Image source={{ uri: influencer.social3}} style={[styles.userProfile]}/>
-                                    <Text style={styles.uname}>Utilisateur3</Text>
-                                </View>
-                            </View>
-                               
-                            <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
-                            
-                            <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
-                                <RatingNotes />
-                            </View>
-                            <View>
-                                <Text style={styles.comentary}>
-                                    Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme123. 
-                                </Text>
-                            </View>
-                        </View>
-
-                        <Influencers ins={ins}/>
-
+    
+                <View style={styles.userComment}>
+                    <View style={{ flexDirection : "row"}}>
+                        <Image source={{ uri: influencer.social3}} style={[styles.userProfile]}/>
+                        <Text style={styles.uname}>Utilisateur1</Text>
                     </View>
                 </View>
+                
+                <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
+                
+                <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
+                    <RatingNotes />
+                </View>
+                <View>
+                    <Text style={styles.comentary}>
+                        Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
+                    </Text>
+                </View>
             </View>
-        </SafeAreaView>
-        </ScrollView>
+    
+            <View style={styles.usersCommentCard}>
+                    <View style={styles.userComment}>
+                        <View style={{ flexDirection : "row"}}>
+                            <Image source={{ uri: influencer.social3}} style={[styles.userProfile]}/>
+                            <Text style={styles.uname}>Utilisateur2</Text>
+                        </View>
+                    </View>
+                    
+                    <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
+                    
+                    <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
+                        <RatingNotes />
+                    </View>
+                    <View>
+                        <Text style={styles.comentary}>
+                            Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
+                        </Text>
+                    </View>
+                </View>
+                
+                <View style={styles.usersCommentCard}>
+                    <View style={styles.userComment}>
+                        <View style={{ flexDirection : "row"}}>
+                            <Image source={{ uri: influencer.social3}} style={[styles.userProfile]}/>
+                            <Text style={styles.uname}>Utilisateur3</Text>
+                        </View>
+                    </View>
+                    
+                    <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
+                    
+                    <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
+                        <RatingNotes />
+                    </View>
+                    <View>
+                        <Text style={styles.comentary}>
+                            Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme123. 
+                        </Text>
+                    </View>
+                </View>
 
-        <BottomSheet />
-        </GestureHandlerRootView>
+
+<View style={styles.usersCommentCard}>
+    <View style={styles.userComment}>
+        <View style={{ flexDirection : "row"}}>
+            <Image source={{ uri: influencer.social3}} style={[styles.userProfile]}/>
+            <Text style={styles.uname}>Utilisateur2</Text>
+        </View>
+    </View>
+       
+    <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
+    
+    <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
+        <RatingNotes />
+    </View>
+    <View>
+        <Text style={styles.comentary}>
+            Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
+        </Text>
+    </View>
+</View>
+
+<View style={styles.usersCommentCard}>
+        <View style={styles.userComment}>
+            <View style={{ flexDirection : "row"}}>
+                <Image source={{ uri: influencer.social3}} style={[styles.userProfile]}/>
+                <Text style={styles.uname}>Utilisateur2</Text>
+            </View>
+        </View>
+        
+        <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
+        
+        <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
+            <RatingNotes />
+        </View>
+        <View>
+            <Text style={styles.comentary}>
+                Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
+            </Text>
+        </View>
+    </View>
+
+    <View style={styles.usersCommentCard}>
+        <View style={styles.userComment}>
+            <View style={{ flexDirection : "row"}}>
+                <Image source={{ uri: influencer.social3}} style={[styles.userProfile]}/>
+                <Text style={styles.uname}>Utilisateur2</Text>
+            </View>
+        </View>
+        
+        <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
+        
+        <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
+            <RatingNotes />
+        </View>
+        <View>
+            <Text style={styles.comentary}>
+                Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
+            </Text>
+        </View>
+    </View>
+
+
+    <View style={styles.usersCommentCard}>
+        <View style={styles.userComment}>
+            <View style={{ flexDirection : "row"}}>
+                <Image source={{ uri: influencer.social3}} style={[styles.userProfile]}/>
+                <Text style={styles.uname}>Utilisateur2</Text>
+            </View>
+        </View>
+        
+        <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
+        
+        <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
+            <RatingNotes />
+        </View>
+        <View>
+            <Text style={styles.comentary}>
+                Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
+            </Text>
+        </View>
+    </View>
+                </ScrollView>
+
+            </Modalize>
+        </SafeAreaView>
     );
 };
 
@@ -202,31 +360,35 @@ const styles = StyleSheet.create({
     },
     backBtn : {
         backgroundColor: 'white',
-        padding: 6,
+        padding: 5,
         borderRadius: 30,
         position: "absolute",
         top: 20,
-        left: 10,
+        left: 15,
     },
     iinfo : {
         borderColor: '#FFF',
         backgroundColor: "#fff",
         borderWidth: 3,
-        //borderRadius: 30,
-
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
     },
     usersComments: {
         marginTop : 10,
     },
+    /*
     usersCommentCard : {
+        borderRadius: 100,
         marginTop : 0,
         flex: 1,
-        backgroundColor: "#fff",
-        padding: 10,
+        backgroundColor: "red",
+        padding: 0,
         marginBottom: 5,
     },
+
+    */
+
+
     userComment : {
         flexDirection: "row"
     },
@@ -272,10 +434,10 @@ const styles = StyleSheet.create({
     rating: {
         flex: 1,
         backgroundColor: "#fff",
-        padding: 25,
-        paddingLeft: 40,
+        padding: 20,
         flexDirection: "row",
-        marginTop: 3
+        marginTop: 3,
+        marginBottom: 5
 
     },
     iname: {
@@ -319,7 +481,6 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
     },
 
-
     heartBtns: {
         backgroundColor: '#D3CFD4',
         position: 'absolute',
@@ -328,7 +489,27 @@ const styles = StyleSheet.create({
         padding: 5,
         borderRadius: 50,
     },
- 
+    modal:{
+        
+        height: 800,
+        paddingBottom: 125,
+        paddingTop: 0,
+        //backgroundColor: "white"
+    },
+    modalHeader: {
+        padding: 10,
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: "center"
+    },
+    barClose: {
+        width: '50%',
+        height: 5,
+        borderRadius: 50,
+        backgroundColor: Colors.black,
+    }
 });
 
 export default InScreen;
