@@ -50,14 +50,23 @@ const InScreen = () => {
         return  <Text style={styles.notfound}>Influencer not found</Text>;
     }
 
-const modalizeRef = useRef(null);
-const onOpen = () => {
-    modalizeRef.current?.open();
-  };
-const onClose = () => {
-    modalizeRef.current?.close();
+    const modalizeRef = useRef(null);
+    const modalizeRefCommentForm = useRef(null);
 
-}
+    const onOpen = () => {
+        modalizeRef.current?.open();
+    };
+    const onClose = () => {
+        modalizeRef.current?.close();
+    }
+
+    //userComment Form
+    const onOpenCommentForm = () => {
+        modalizeRefCommentForm.current?.open();
+    };
+    const onCloseCommentForm = () => {
+        modalizeRefCommentForm.current?.close();
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -71,7 +80,7 @@ const onClose = () => {
                         <View style={{marginTop: 20, flexDirection: "row"}}>
 
                             <TouchableOpacity>
-                                <Icon name="message1" size={25} color="red" style={{marginLeft: 15}} /> 
+                                <Icon name="message1" onPress={onOpen} size={25} color="black" style={{marginLeft: 15}} /> 
                             </TouchableOpacity>
 
                             <Icon name="staro" size={25} color="black"  style={{position: 'absolute', right: 0, marginRight: 15}}/> 
@@ -97,7 +106,7 @@ const onClose = () => {
                 </View>
 
                 <View>
-                        <View style={styles.rating}>
+                        <View style={styles.rating2}>
                             <Rating />
                             <Text style={styles.note}>{defaulRating + '/' + maxRating.length}</Text>
                             <Icon name="infocirlceo" size={25} color="black" style={styles.icon} /> 
@@ -108,7 +117,7 @@ const onClose = () => {
                 <View>
                         <View style={styles.rating}>
                             <View style={styles.usersCommentCard}>
-                            <Text style={{left: 55, marginTop:20, fontWeight: "bold", fontSize: 20}}>Patagez vos expériences</Text>
+                            <Text style={{left: 55, marginTop:10, fontWeight: "bold", fontSize: 20}}>Patagez vos expériences</Text>
 
                                 <View style={styles.userComment}>
                                     <View style={{ flexDirection : "row"}}>
@@ -129,49 +138,45 @@ const onClose = () => {
                                     </Text>
                                 </View>
 
-                            <View style={{marginLeft: 70, marginRight: 70, marginTop:20}}>
-                                <TouchableOpacity style={{
-                                            backgroundColor:"#DFE2E8", 
-                                            borderRadius: 20, }}
-                                            onPress={onOpen}>
-                                        <Text 
-                                            style={{
-                                                textAlign: "center",
-                                                fontSize: 15,
-                                                paddingVertical: 10,
-                                                color: "black",
-                                                //borderWidth: 3,
-                                                }}>En voir plus
-                                        </Text>                                 
-                                </TouchableOpacity>
-                            </View>
+
+                                <View style={styles.userComment}>
+                                    <View style={styles.commentForm}>
+                                        <Image source={{ uri: influencer.social3}} style={[styles.userProfile]}/>
+                                        <TouchableOpacity onPress={onOpenCommentForm}>
+                                            <Text style={styles.inputUserComment}>Ajouter un commentaire </Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                </View>
+
+                                <View style={{marginLeft: 100, marginRight: 100}}>
+                                    <TouchableOpacity style={{ backgroundColor:"#DFE2E8", borderRadius: 20, }} onPress={onOpen}>
+                                            <Text style={{ textAlign: "center", fontSize: 15, paddingVertical: 12, color: "black",}}> 
+                                                Voir plus
+                                            </Text>                                 
+                                    </TouchableOpacity>
+                                </View>
 
                             </View>
                         </View>
-                </View>
+                    </View>
 
 
-                <View style={{backgroundColor: "white"}}>
+                <View style={styles.moreCreators}>
+
+                    <Text style={{padding: 18, fontSize: 18, fontWeight: "bold", textAlign:"center"}}> Plus d'influenceurs similaires</Text>
                     <Influencers ins={ins}/>
                 </View>
-
 
             </View>
             </ScrollView>
 
-
-
-            <Modalize ref={modalizeRef} 
-                    scrollViewProps={ {showsVerticalScroollIndicator: false}}
+            <Modalize ref={modalizeRef} scrollViewProps={{showsVerticalScroollIndicator: false}}
                     onScrollBeginDrag={false}
                     withHandle={false}
                     HeaderComponent= {
                         <View>
-                            <TouchableOpacity
-                            onPress={onClose}
-                            style={styles.modalHeader}>
+                            <TouchableOpacity onPress={onClose} style={styles.modalHeader}>
                                 <View style={styles.barClose}></View>
-
                             </TouchableOpacity>
                         </View>
                     }
@@ -241,88 +246,99 @@ const onClose = () => {
                 </View>
 
 
-<View style={styles.usersCommentCard}>
-    <View style={styles.userComment}>
-        <View style={{ flexDirection : "row"}}>
-            <Image source={{ uri: influencer.social3}} style={[styles.userProfile]}/>
-            <Text style={styles.uname}>Utilisateur2</Text>
-        </View>
-    </View>
-       
-    <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
-    
-    <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
-        <RatingNotes />
-    </View>
-    <View>
-        <Text style={styles.comentary}>
-            Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
-        </Text>
-    </View>
-</View>
+                <View style={styles.usersCommentCard}>
+                    <View style={styles.userComment}>
+                        <View style={{ flexDirection : "row"}}>
+                            <Image source={{ uri: influencer.social3}} style={[styles.userProfile]}/>
+                            <Text style={styles.uname}>Utilisateur2</Text>
+                        </View>
+                    </View>
+                    
+                    <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
+                    
+                    <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
+                        <RatingNotes />
+                    </View>
+                    <View>
+                        <Text style={styles.comentary}>
+                            Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
+                        </Text>
+                    </View>
+                </View>
 
-<View style={styles.usersCommentCard}>
-        <View style={styles.userComment}>
-            <View style={{ flexDirection : "row"}}>
-                <Image source={{ uri: influencer.social3}} style={[styles.userProfile]}/>
-                <Text style={styles.uname}>Utilisateur2</Text>
-            </View>
-        </View>
-        
-        <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
-        
-        <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
-            <RatingNotes />
-        </View>
-        <View>
-            <Text style={styles.comentary}>
-                Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
-            </Text>
-        </View>
-    </View>
+                <View style={styles.usersCommentCard}>
+                        <View style={styles.userComment}>
+                            <View style={{ flexDirection : "row"}}>
+                                <Image source={{ uri: influencer.social3}} style={[styles.userProfile]}/>
+                                <Text style={styles.uname}>Utilisateur2</Text>
+                            </View>
+                        </View>
+                        
+                        <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
+                        
+                        <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
+                            <RatingNotes />
+                        </View>
+                        <View>
+                            <Text style={styles.comentary}>
+                                Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
+                            </Text>
+                        </View>
+                    </View>
 
-    <View style={styles.usersCommentCard}>
-        <View style={styles.userComment}>
-            <View style={{ flexDirection : "row"}}>
-                <Image source={{ uri: influencer.social3}} style={[styles.userProfile]}/>
-                <Text style={styles.uname}>Utilisateur2</Text>
-            </View>
-        </View>
-        
-        <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
-        
-        <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
-            <RatingNotes />
-        </View>
-        <View>
-            <Text style={styles.comentary}>
-                Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
-            </Text>
-        </View>
-    </View>
+                    <View style={styles.usersCommentCard}>
+                        <View style={styles.userComment}>
+                            <View style={{ flexDirection : "row"}}>
+                                <Image source={{ uri: influencer.social3}} style={[styles.userProfile]}/>
+                                <Text style={styles.uname}>Utilisateur2</Text>
+                            </View>
+                        </View>
+                        
+                        <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
+                        
+                        <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
+                            <RatingNotes />
+                        </View>
+                        <View>
+                            <Text style={styles.comentary}>
+                                Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
+                            </Text>
+                        </View>
+                    </View>
 
 
-    <View style={styles.usersCommentCard}>
-        <View style={styles.userComment}>
-            <View style={{ flexDirection : "row"}}>
-                <Image source={{ uri: influencer.social3}} style={[styles.userProfile]}/>
-                <Text style={styles.uname}>Utilisateur2</Text>
-            </View>
-        </View>
-        
-        <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
-        
-        <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
-            <RatingNotes />
-        </View>
-        <View>
-            <Text style={styles.comentary}>
-                Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
-            </Text>
-        </View>
-    </View>
+                    <View style={styles.usersCommentCard}>
+                        <View style={styles.userComment}>
+                            <View style={{ flexDirection : "row"}}>
+                                <Image source={{ uri: influencer.social3}} style={[styles.userProfile]}/>
+                                <Text style={styles.uname}>Utilisateur2</Text>
+                            </View>
+                        </View>
+                        
+                        <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20}}/>
+                        
+                        <View style={{marginLeft: 20, marginRight: 20, marginTop: 10}}>
+                            <RatingNotes />
+                        </View>
+                        <View>
+                            <Text style={styles.comentary}>
+                                Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
+                            </Text>
+                        </View>
+                    </View>
                 </ScrollView>
+            </Modalize>
 
+
+            <Modalize ref={modalizeRefCommentForm} modalHeight={300} snapPoint={900}>
+                <View>
+                    <Text style={{textAlign:"center", padding:15}}>Ajouter un commentaire</Text>
+                        <TextInput
+                            style={styles.inputUserComment}
+                            placeholder="Écrivez votre avis ici. Parlez de votre expérience sans utiliser de langage
+                            offensant. Laissez un témoignage honnête, utile et constructif"
+                        />
+                </View>
             </Modalize>
         </SafeAreaView>
     );
@@ -334,12 +350,6 @@ const styles = StyleSheet.create({
         //backgroundColor: '#000',
         justifyContent: 'center',
         marginHorizontal: 0,
-      },
-      containery: {
-        flex: 1,
-        backgroundColor: 'grey',
-        alignItems: 'center',
-        justifyContent: 'c'
       },
     RatingNote : {
         marginTop : 20
@@ -376,19 +386,7 @@ const styles = StyleSheet.create({
     usersComments: {
         marginTop : 10,
     },
-    /*
-    usersCommentCard : {
-        borderRadius: 100,
-        marginTop : 0,
-        flex: 1,
-        backgroundColor: "red",
-        padding: 0,
-        marginBottom: 5,
-    },
-
-    */
-
-
+ 
     userComment : {
         flexDirection: "row"
     },
@@ -436,8 +434,20 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         padding: 20,
         flexDirection: "row",
-        marginTop: 3,
-        marginBottom: 5
+        marginTop: 1,
+        marginBottom: 5,
+        borderRadius: 20
+
+    },
+
+    rating2: {
+        flex: 1,
+        backgroundColor: "#fff",
+        padding: 35,
+        flexDirection: "row",
+        marginTop: 1,
+        marginBottom: 2,
+        borderRadius: 0
 
     },
     iname: {
@@ -509,7 +519,26 @@ const styles = StyleSheet.create({
         height: 5,
         borderRadius: 50,
         backgroundColor: Colors.black,
-    }
+    },
+    moreCreators: {
+        backgroundColor: "white", 
+        borderRadius: 20,
+    },
+    inputUserComment: {
+        height: 40,
+        width: 400,
+        margin: 15,
+        borderWidth: 0,
+        padding: 10,
+        Left: 10,
+        Right: 10,
+
+        color: "lightgrey"
+      },
+      commentForm: {
+        flexDirection : "row", 
+        marginTop:10,
+      }
 });
 
 export default InScreen;

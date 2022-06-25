@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
     },
     body: {
         flex: 1,
-        paddingLeft:2,
-        paddingRight:2
+        paddingLeft:3,
+        paddingRight:3
         //alignItems:"center"
     },
     registered: {
