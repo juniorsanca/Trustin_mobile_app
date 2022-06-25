@@ -17,6 +17,7 @@ import Influencers from "./components/Influencers";
 
 import { Modalize } from 'react-native-modalize';
 import { Colors } from "react-native/Libraries/NewAppScreen";
+import RNTextArea from "@freakycoder/react-native-text-area";
 
 
 
@@ -332,12 +333,18 @@ const InScreen = () => {
 
             <Modalize ref={modalizeRefCommentForm} modalHeight={300} snapPoint={900}>
                 <View>
-                    <Text style={{textAlign:"center", padding:15}}>Ajouter un commentaire</Text>
-                        <TextInput
-                            style={styles.inputUserComment}
-                            placeholder="Écrivez votre avis ici. Parlez de votre expérience sans utiliser de langage
-                            offensant. Laissez un témoignage honnête, utile et constructif"
-                        />
+                    <View>
+                        <RNTextArea style={styles.textareaForm}
+                            maxCharLimit={300}
+                            placeholderTextColor="lightgrey"
+                            exceedCharCountColor="#990606"
+                            placeholder="Écrivez votre avis ici. Parlez de votre expérience sans utiliser de langage offensant. Laissez un témoignage honnête, utile et constructif."
+                            //onChangeText={(text: string) => console.log("Text: ", text)}
+                            />
+                    </View>
+                    <View style={{marginTop: -36, marginLeft: 150}}>
+                        <Button onPress title="Publier"color="grey"/>
+                    </View>
                 </View>
             </Modalize>
         </SafeAreaView>
@@ -526,10 +533,9 @@ const styles = StyleSheet.create({
     },
     inputUserComment: {
         height: 40,
-        width: 400,
-        margin: 15,
+        marginTop: 15,
         borderWidth: 0,
-        padding: 10,
+        paddingTop: 10,
         Left: 10,
         Right: 10,
 
@@ -538,6 +544,11 @@ const styles = StyleSheet.create({
       commentForm: {
         flexDirection : "row", 
         marginTop:10,
+      },
+      textareaForm: {
+        //backgroundColor: "red",
+        height: 250,
+
       }
 });
 
