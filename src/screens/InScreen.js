@@ -71,8 +71,7 @@ const InScreen = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-        <ScrollView>
-
+        <ScrollView style={{marginBottom: -38}}>
             <View style={styles.root}>
                 <View style={styles.iinfo}>
                     <View>
@@ -163,7 +162,6 @@ const InScreen = () => {
 
 
                 <View style={styles.moreCreators}>
-
                     <Text style={{padding: 18, fontSize: 18, fontWeight: "bold", textAlign:"center"}}> Plus d'influenceurs similaires</Text>
                     <Influencers ins={ins}/>
                 </View>
