@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import OnboardingScreen from '../OnboardingScreen';
 import HomeScreen from '../HomeScreen';
+import NewScreen from '../NewScreen';
 import InScreen from '../InScreen';
 import ProfileScreen from '../ProfileScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -40,6 +41,9 @@ const HomeNav = () => {
 
             <Tab.Screen name="HomeScreen" component={HomeScreen} options={{ tabBarLabel: 'Home', tabBarIcon: ({ color, size }) => (
                 <Icon name="home" size={20} color="black" /> ), }} />
+            
+            <Tab.Screen name="NewScreen" component={NewScreen} options={{ tabBarLabel: 'News', tabBarIcon: ({ color, size }) => (
+                <Icon name="camerao" size={20} color="black" /> ), }} />
             
             <Tab.Screen name="In" component={InScreen} options={{ tabBarLabel: 'Influencer', tabBarIcon: ({ color, size }) => (
                 <Icon name="hearto" size={20} color="black" /> ), }} />

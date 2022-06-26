@@ -5,7 +5,8 @@ import {
     Image,
     StyleSheet,
     ScrollView,
-    TouchableOpacity
+    TouchableOpacity,
+    Button
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -25,6 +26,15 @@ const ProfileScreen = ({navigation}) => {
         modalizeRefMyReviews.current?.close();
     }
 
+
+    const modalizeRefBusiness = useRef(null);
+
+    const onOpenBusiness = () => {
+        modalizeRefBusiness.current?.open();
+    };
+    const onCloseBusiness = () => {
+        modalizeRefBusiness.current?.close();
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -46,10 +56,11 @@ const ProfileScreen = ({navigation}) => {
 
                     <View style={styles.insideCardZone}>
                         <Text style={{marginBottom: 20}}>
-                            Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme123. 
+                            Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page                        
                         </Text>
-                        
-                        <Text style={{fontWeight: "bold", marginTop:20, fontSize: 20}}>Trustin Business</Text>
+                        <TouchableOpacity onPress={onOpenBusiness}>
+                            <Text style={{fontWeight: "bold", marginTop:20, fontSize: 20}}>Trustin Business</Text>
+                        </TouchableOpacity>
                         <TouchableOpacity onPress={onOpen}>
                             <Text style={{fontWeight: "bold", marginTop:20, fontSize: 20}}>Mes avis</Text>
                         </TouchableOpacity>
@@ -81,6 +92,9 @@ const ProfileScreen = ({navigation}) => {
                                     Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
                                 </Text>
                             </View>
+                            <View style={{left: 300}}>
+                                <Icon name="delete" size={20} color="red" /> 
+                            </View>
                             <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20,marginRight: 20, marginTop: 10}}/>
 
                         </View>
@@ -97,6 +111,9 @@ const ProfileScreen = ({navigation}) => {
                                 <Text style={styles.comentary}>
                                     Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
                                 </Text>
+                            </View>
+                            <View style={{left: 300}}>
+                                <Icon name="delete" size={20} color="red" /> 
                             </View>
                             <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20,marginRight: 20, marginTop: 10}}/>
 
@@ -115,6 +132,9 @@ const ProfileScreen = ({navigation}) => {
                                     Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
                                 </Text>
                             </View>
+                            <View style={{left: 300}}>
+                                <Icon name="delete" size={20} color="red" /> 
+                            </View>
                             <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20,marginRight: 20, marginTop: 10}}/>
 
                         </View>
@@ -131,6 +151,9 @@ const ProfileScreen = ({navigation}) => {
                                 <Text style={styles.comentary}>
                                     Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
                                 </Text>
+                            </View>
+                            <View style={{left: 300}}>
+                                <Icon name="delete" size={20} color="red" /> 
                             </View>
                             <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20,marginRight: 20, marginTop: 10}}/>
 
@@ -149,9 +172,47 @@ const ProfileScreen = ({navigation}) => {
                                     Boutique en ligne de vêtements bio, naturels et écologiques en laine, soie, lin, chanvre, coton bio pour bébé, enfant et femme. 
                                 </Text>
                             </View>
+                            <View style={{left: 300}}>
+                                <Icon name="delete" size={20} color="red" /> 
+                            </View>
                             <View style={{ borderBottomColor: '#F2F2F5', borderBottomWidth: 1, marginLeft: 20,marginRight: 20, marginTop: 10}}/>
 
                         </View>
+                </View>
+                </ScrollView>
+
+        </Modalize>
+
+        <Modalize ref={modalizeRefBusiness} modalHeight={400} snapPoint={900}>
+            <ScrollView style={styles.myCommentsList}>
+
+                <View style={{flex: 1,paddingBottom: 300}}>
+                    <Text style={{margin: 30, fontWeight:"bold", textAlign: "center", fontSize: 15}}>Convertir en compte professionnel</Text>
+                    <Text style={{marginLeft: 30, marginRight: 30, color: "grey"}}>
+                        Développez votre activité ou votre marque grâce à des outils comme les statistiques et les annonces publicitaires. 
+                        Votre contenu, votre profil et vos avis ne changeront pas.
+                    </Text>
+
+                    <View style={{flexDirection: "row", marginLeft: 110, marginTop: 45, marginBottom: 35}}>
+                        <Image source={{ uri: "https://juniorsanca.fr/img/profil.png" }} style={styles.commentImage}/>
+                        <Icon name="arrowright" size={25} color="black" style={{marginLeft: 20, marginRight: 20, marginTop: 10}}/> 
+                        <Icon name="isv" size={40} color="black" /> 
+                    </View>
+
+                    <View>
+                        <Button
+                            onPress
+                            title="Covertir mon compte"
+                            color="#841584"
+                            backgroundColor= "red"
+                            accessibilityLabel="Learn more about this purple button"
+                            />
+                    </View>
+                    <View>
+                        <Text style={{marginLeft: 30, marginRight: 30, fontSize: 11, marginTop: 25}}>
+                            En convertissant votre compte, vous acceptez les conditions d'utilisation et la politique de confidentialité de Trustin
+                        </Text>
+                    </View>
                 </View>
                 </ScrollView>
 
@@ -208,7 +269,7 @@ const styles = StyleSheet.create({
     },
     myCommentsList: {
         height: 800,
-        paddingBottom: 125,
+        paddingBottom: 350,
         paddingTop: 0,
     }
 

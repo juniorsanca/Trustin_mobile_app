@@ -69,6 +69,7 @@ const InScreen = () => {
         modalizeRefCommentForm.current?.close();
     }
 
+    
     return (
         <SafeAreaView style={styles.container}>
         <ScrollView style={{marginBottom: -38}}>
@@ -161,9 +162,9 @@ const InScreen = () => {
                     </View>
 
 
-                <View style={styles.moreCreators}>
+                <View style={styles.moreCreators} >
                     <Text style={{padding: 18, fontSize: 18, fontWeight: "bold", textAlign:"center"}}> Plus d'influenceurs similaires</Text>
-                    <Influencers ins={ins}/>
+                    <Influencers ins={ins} />
                 </View>
 
             </View>
