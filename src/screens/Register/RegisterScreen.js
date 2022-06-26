@@ -26,7 +26,9 @@ const [phoneField, setPhoneField] = useState('');
 const [emailField, setEmailField] = useState('');
 const [passwordField, setPasswordField] = useState('');
 
-
+const handleRegisterClick = () => {
+        
+}
 
     return (
         <View style={{flex:1}}>
@@ -75,7 +77,7 @@ const [passwordField, setPasswordField] = useState('');
 
                 <View style={{marginTop: 20}}>
                         <View style={{height: 55}}>
-                            <TouchableOpacity style={[styles.btn2]} >
+                            <TouchableOpacity onPress={handleRegisterClick} style={[styles.btn2]} >
                                 <Text style={{
                                     fontWeight: 'bold', 
                                     fontSize: 15, 

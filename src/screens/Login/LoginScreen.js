@@ -24,6 +24,10 @@ const LoginScreen = ({navigation}) => {
     const [emailField, setEmailField] = useState('');
     const [passwordField, setPasswordField] = useState('');
 
+    const handleLoginClick = () => {
+
+    }
+    
     return (
         <View style={{flex:1}}>
             <LinearGradient 
@@ -94,7 +98,7 @@ const LoginScreen = ({navigation}) => {
                             <View style={{height: 55}}>
                                 <TouchableOpacity 
                                     style={[styles.btn2]} 
-                                    onPress={() => navigation.replace('RegisterScreen')}>
+                                    onPress={handleLoginClick}>
                                     <Text style={{
                                         fontWeight: 'bold', 
                                         fontSize: 18, 
