@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
     Text,
     View,
@@ -8,6 +8,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import LoginInput from "../components/LoginInput";
 
 const {width, height} = Dimensions.get('window');
 
@@ -19,6 +20,10 @@ const GRADIENT_LOCATIONS = [0, 0.3, 0.9, 0.7, 0.8, 1, 1];
 
 
 const LoginScreen = ({navigation}) => {
+
+    const [emailField, setEmailField] = useState('');
+    const [passwordField, setPasswordField] = useState('');
+
     return (
         <View style={{flex:1}}>
             <LinearGradient 
@@ -59,22 +64,23 @@ const LoginScreen = ({navigation}) => {
                         </Text>
                 </View>
 
-                <View style={{marginTop: 45}}>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Adresse email"
-                        //value=""
-                    />
-                </View>
+             
 
-                <View style={{marginTop: 10}}>
-                    <TextInput style={styles.input2}
-                            placeholder="Mot de passe"
-                            returnKeyType='go'
-                            secureTextEntry
-                            autoCorrect={false}
-                    />
-                </View>
+            {/*--------[DEBUT LOGIN IN COMPONENT]--------*/}
+            <View style={{marginTop: 45}}>
+
+                    <LoginInput 
+                        placeholder="Adresse email"
+                        value={emailField}
+                        onChangeText={t=>setEmailField(t)}
+                        />
+                    <LoginInput 
+                        placeholder="Mot de passe"
+                        value={passwordField}
+                        onChangeText={t=>setPasswordField(t)}
+                        password={true}
+                        />                
+            </View>
 
                 <View style={{marginTop: 10}}>
                         <Text style={[styles.forgotPassword]} >
@@ -85,19 +91,19 @@ const LoginScreen = ({navigation}) => {
                 </View>
 
                 <View style={{marginTop: 20}}>
-                        <View style={{height: 55}}>
-                            <TouchableOpacity 
-                                style={[styles.btn2]} 
-                                onPress={() => navigation.replace('RegisterScreen')}>
-                                <Text style={{
-                                    fontWeight: 'bold', 
-                                    fontSize: 18, 
-                                    color: '#fff'}}>
-                                    Connexion
-                                </Text>
-                            </TouchableOpacity>
-                        </View> 
-                </View>
+                            <View style={{height: 55}}>
+                                <TouchableOpacity 
+                                    style={[styles.btn2]} 
+                                    onPress={() => navigation.replace('RegisterScreen')}>
+                                    <Text style={{
+                                        fontWeight: 'bold', 
+                                        fontSize: 18, 
+                                        color: '#fff'}}>
+                                        Connexion
+                                    </Text>
+                                </TouchableOpacity>
+                            </View> 
+                    </View>
 
                 <View
                     style= {{
@@ -107,11 +113,14 @@ const LoginScreen = ({navigation}) => {
                         }}>
                     <Text>   
                         <Text style={[styles.welcome]} >
-                            <Text> {'Vous n\'avez pas de compte ?'} <Text style={{
+                            <Text> {'Vous n\'avez pas de compte ?'} 
+                            <TouchableOpacity onPress={() => navigation.replace('RegisterScreen')}>
+                            <Text style={{
                                 fontWeight: 'bold',
                                 color:'#FFF',
                                 }}
                                 > S'inscrire</Text>
+                                </TouchableOpacity>
                             </Text>
                         </Text>
                     </Text>
@@ -124,6 +133,9 @@ const LoginScreen = ({navigation}) => {
 
 
 const styles = StyleSheet.create({
+    InputArea: {
+        backgroundColor: "red"
+    },
     title: {
         color: '#fff',
         fontSize: 50,
@@ -141,14 +153,6 @@ const styles = StyleSheet.create({
         color:'#fff',
     },
     input: {
-        height: 56,
-        backgroundColor: '#fff',
-        borderRadius: 50,
-        borderWidth: 1,
-        borderColor: '#fff',
-        paddingLeft: 30,
-      },
-      input2: {
         height: 56,
         backgroundColor: '#fff',
         borderRadius: 50,

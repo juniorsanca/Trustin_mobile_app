@@ -52,7 +52,7 @@ const WelcomeScreen = ({navigation}) => {
                 <View style={{height: 60}}>
                     <TouchableOpacity 
                         style={[styles.btn2]} 
-                        onPress={() => navigation.replace('RegisterScreen')}>
+                        onPress={() => navigation.replace('PreloadScreen')}>
                         <Text style={{fontWeight: 'bold', fontSize: 15, color: '#fff'}}>
                             CREATE NEW ACCOUNT
                         </Text>

@@ -16,7 +16,6 @@ const HomeScreen = ({navigation}) => {
             <View style={styles.body}>
                 <View style={styles.parent}>
                     <Text style={[styles.search]} >Parcourir</Text>
-                    <Text style={[styles.registered]} >Enregistré</Text>
                 </View>
 
                 <View style={{margin: 15, alignItems: "center"}}>
@@ -38,23 +37,19 @@ const HomeScreen = ({navigation}) => {
 const styles = StyleSheet.create({
     search: {
         flex: 1,
-        marginRight: 15,
         color: 'black',
         fontSize: 15,
         fontWeight: 'bold',
-        marginTop: 40,
+        marginTop: 45,
+        textAlign: 'center',
+        //textDecorationLine: 'underline'
+
     },
     body: {
         flex: 1,
         paddingLeft:3,
         paddingRight:3
         //alignItems:"center"
-    },
-    registered: {
-        color: 'black',
-        fontSize: 15,
-        fontWeight: 'bold',
-        marginTop: 40,
     },
     parent: {
         flexDirection: "row",

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
     Text,
     View,
@@ -8,6 +8,8 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import LoginInput from "../components/LoginInput";
+
 
 const {width, height} = Dimensions.get('window');
 
@@ -16,9 +18,16 @@ const END_DEFAULT = { x: 0.5, y: 1 };
 const GRADIENT_COLORS = ["#F5A64F", "#F07754", "#CA4171"];
 const GRADIENT_LOCATIONS = [0, 0.3, 0.9, 0.7, 0.8, 1, 1];
 
-
-
 const RegisterScreen = ({navigation}) => {
+
+
+const [nameField, setNameField] = useState('');
+const [phoneField, setPhoneField] = useState('');
+const [emailField, setEmailField] = useState('');
+const [passwordField, setPasswordField] = useState('');
+
+
+
     return (
         <View style={{flex:1}}>
             <LinearGradient 
@@ -38,52 +47,35 @@ const RegisterScreen = ({navigation}) => {
                         <Text style={[styles.title]} >Trust<Text style={{fontWeight: 'bold', color:'#CA4171'}}>{'in'}</Text></Text>
                 </View>
 
+                       {/*--------[DEBUT REGISTER IN COMPONENT]--------*/}
                 <View style={{marginTop: 45}}>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Nom d'utilisateur *"
-                        //value=""
+
+                    <LoginInput 
+                        placeholder="NOM Prénom *"
+                        value={nameField}
+                        onChangeText={t=>setNameField(t)}
                     />
-                </View>
-
-                <View style={{marginTop: 10}}>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Nom de l'entreprise"
-                        //value=""
+                    <LoginInput 
+                        placeholder="Numéro de télépone *"
+                        value={phoneField}
+                        onChangeText={t=>setPhoneField(t)}
                     />
-                </View>
-
-                <View style={{marginTop: 10}}>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Numéro de téléphone"
-                        //value=""
+                    <LoginInput 
+                        placeholder="Adresse email *"
+                        value={emailField}
+                        onChangeText={t=>setEmailField(t)}
                     />
+                    <LoginInput 
+                        placeholder="Mot de passe *"
+                        value={passwordField}
+                        onChangeText={t=>setPasswordField(t)}
+                        password={true}
+                        />                
                 </View>
-
-                <View style={{marginTop: 10}}>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Adresse email"
-                        //value=""
-                    />
-                </View>
-
-                <View style={{marginTop: 10}}>
-                    <TextInput style={styles.input2}
-                            placeholder="Mot de passe"
-                            returnKeyType='go'
-                            secureTextEntry
-                            autoCorrect={false}
-                    />
-                </View>
-
-
 
                 <View style={{marginTop: 20}}>
                         <View style={{height: 55}}>
-                            <TouchableOpacity style={[styles.btn2]} onPress={() => navigation.replace('HomeScreen')}>
+                            <TouchableOpacity style={[styles.btn2]} >
                                 <Text style={{
                                     fontWeight: 'bold', 
                                     fontSize: 15, 
@@ -96,7 +88,9 @@ const RegisterScreen = ({navigation}) => {
             
                 <Text style={[styles.haveAccount]} >
                     <Text> {'Vous avez déjà un compte ?'} 
-                        <Text style={{fontWeight: 'bold', color:'#FFF'}}> Connexion</Text>
+                        <TouchableOpacity onPress={() => navigation.replace('LoginScreen')}>
+                            <Text style={{fontWeight: 'bold', color:'#FFF'}}> Connexion</Text>
+                        </TouchableOpacity>
                     </Text>
                 </Text>
 

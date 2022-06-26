@@ -75,7 +75,7 @@ const ProfileScreen = ({navigation}) => {
         </ScrollView>
 
 
-            <Modalize  ref={modalizeRefMyReviews} modalHeight={300} snapPoint={900}>
+            <Modalize  ref={modalizeRefMyReviews} modalHeight={550} snapPoint={900}>
             <ScrollView style={styles.myCommentsList}>
 
                 <View style={{flex: 1,paddingBottom: 300}}>

@@ -4,9 +4,10 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import OnboardingScreen from '../OnboardingScreen';
 import WelcomeScreen from '../WelcomeScreen';
-import LoginScreen from '../LoginScreen';
-import RegisterScreen from '../RegisterScreen';
+import LoginScreen from '../Login/LoginScreen';
+import RegisterScreen from '../Register/RegisterScreen';
 import ForgotPasswordScreen from '../ForgotPasswordScreen';
+import PreloadScreen from '../Preload/PreloadScreen';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -40,6 +41,7 @@ const AuthNav = () => {
           )}
 
             <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
+            <Stack.Screen name="PreloadScreen" component={PreloadScreen} />
             <Stack.Screen name="LoginScreen" component={LoginScreen} />
             <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
             <Stack.Screen name="ForgotPasswordScreen" component={ForgotPasswordScreen} />
