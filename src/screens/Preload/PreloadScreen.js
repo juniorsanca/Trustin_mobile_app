@@ -1,4 +1,3 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect } from "react";
 import {
     Text,
@@ -8,6 +7,10 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import Api from '../../Api';
+
 
 const {width, height} = Dimensions.get('window');
 
@@ -24,9 +27,19 @@ const PreloadScreen = () => {
     useEffect(() => {
         const checkToken = async () => {
             const token = await AsyncStorage.getItem('token');
-
+            
             if(token) {
-                // validar o token
+                let res = await Api.checkToken('token');
+
+                if(res.token){
+                    await AsyncStorage.setItem('token', res.token);
+
+                    navigation.reset({
+                        routes:[{name: 'HomeScreen'}]
+                    })
+                } else {
+                    navigation.navigate('LoginScreen')
+                }
             } else {
                 navigation.navigate('LoginScreen')
             }

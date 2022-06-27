@@ -9,6 +9,11 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import LoginInput from "../components/LoginInput";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NavigationActions } from 'react-navigation';
+
+import Api from '../../Api';
+
 
 const {width, height} = Dimensions.get('window');
 
@@ -18,16 +23,31 @@ const GRADIENT_COLORS = ["#F5A64F", "#F07754", "#CA4171"];
 const GRADIENT_LOCATIONS = [0, 0.3, 0.9, 0.7, 0.8, 1, 1];
 
 
-
 const LoginScreen = ({navigation}) => {
 
     const [emailField, setEmailField] = useState('');
     const [passwordField, setPasswordField] = useState('');
 
-    const handleLoginClick = () => {
+    const handleLoginClick = async () => {
+        if (emailField != '' && passwordField != '') {
 
+            let res = await Api.LoginIn(emailField, passwordField);
+
+            if(res.token){
+                await AsyncStorage.setItem('token', res.token);
+     
+                navigation.reset({
+                    routes: [{name: 'HomeScreen'}]
+                });
+
+            } else {
+                alert('Email ou senha errado !')
+            }
+        } else {
+            alert("Preenche os campos !")
+        }
     }
-    
+
     return (
         <View style={{flex:1}}>
             <LinearGradient 

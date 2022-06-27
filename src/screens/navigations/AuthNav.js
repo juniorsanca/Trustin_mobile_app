@@ -9,6 +9,13 @@ import RegisterScreen from '../Register/RegisterScreen';
 import ForgotPasswordScreen from '../ForgotPasswordScreen';
 import PreloadScreen from '../Preload/PreloadScreen';
 
+/*
+import HomeScreen from '../HomeScreen';
+import NewScreen from '../NewScreen';
+import ProfileScreen from '../ProfileScreen';
+import InScreen from '../InScreen';
+*/
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -19,6 +26,7 @@ const Tab = createBottomTabNavigator();
 const AuthNav = () => {
   const [isAppFirstLaunched, setIsAppFirstLaunched] = React.useState(null);
   React.useEffect(async () => {
+    
     const appData = await AsyncStorage.getItem('isAppFirstLaunched');
     console.log(appData);
 
@@ -45,6 +53,16 @@ const AuthNav = () => {
             <Stack.Screen name="LoginScreen" component={LoginScreen} />
             <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
             <Stack.Screen name="ForgotPasswordScreen" component={ForgotPasswordScreen} />
+        
+        
+        {/*
+            <Stack.Screen name="HomeScreen" component={HomeScreen} />
+            <Stack.Screen name="NewScreen" component={NewScreen} />
+            <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+            <Stack.Screen name="InScreen" component={InScreen} />
+
+
+          */}
 
 
         </Stack.Navigator>

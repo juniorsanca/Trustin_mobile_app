@@ -9,7 +9,10 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import LoginInput from "../components/LoginInput";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NavigationActions } from 'react-navigation';
 
+import Api from '../../Api';
 
 const {width, height} = Dimensions.get('window');
 
@@ -22,12 +25,29 @@ const RegisterScreen = ({navigation}) => {
 
 
 const [nameField, setNameField] = useState('');
-const [phoneField, setPhoneField] = useState('');
 const [emailField, setEmailField] = useState('');
 const [passwordField, setPasswordField] = useState('');
+const [confirmPassword, setConfirmPasswordField] = useState('');
 
-const handleRegisterClick = () => {
-        
+
+const handleRegisterClick = async () => {
+        if(nameField != '' && emailField !='' && confirmPassword !='' && passwordField !='') {
+            let res = await Api.Register(nameField, emailField, confirmPassword, passwordField);
+            console;log(res);
+
+            if(res.token) {
+                await AsyncStorage.setItem('token', res.token);
+
+                navigation.reset({
+                    routes: [{name: 'HomeScreen'}]
+                });
+
+            } else {
+                alert("Erro: "+res.error)
+            }
+        } else {
+            alert("Prenches os campos")
+        }
 }
 
     return (
@@ -45,22 +65,17 @@ const handleRegisterClick = () => {
                 end= {END_DEFAULT}
                 >
 
-                <View style={{marginTop: 80}}>
+                <View style={{marginTop: 90}}>
                         <Text style={[styles.title]} >Trust<Text style={{fontWeight: 'bold', color:'#CA4171'}}>{'in'}</Text></Text>
                 </View>
 
                        {/*--------[DEBUT REGISTER IN COMPONENT]--------*/}
-                <View style={{marginTop: 45}}>
+                <View style={{marginTop: 85}}>
 
                     <LoginInput 
                         placeholder="NOM Prénom *"
                         value={nameField}
                         onChangeText={t=>setNameField(t)}
-                    />
-                    <LoginInput 
-                        placeholder="Numéro de télépone *"
-                        value={phoneField}
-                        onChangeText={t=>setPhoneField(t)}
                     />
                     <LoginInput 
                         placeholder="Adresse email *"
@@ -72,7 +87,14 @@ const handleRegisterClick = () => {
                         value={passwordField}
                         onChangeText={t=>setPasswordField(t)}
                         password={true}
-                        />                
+                        />    
+
+                           <LoginInput 
+                        placeholder="Confirme password *"
+                        value={confirmPassword}
+                        onChangeText={t=>setConfirmPasswordField(t)}
+                        password={true}
+                        />              
                 </View>
 
                 <View style={{marginTop: 20}}>

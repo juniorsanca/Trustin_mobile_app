@@ -2,14 +2,6 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import OnboardingScreen from './src/screens/OnboardingScreen';
-import WelcomeScreen from './src/screens/WelcomeScreen';
-import LoginScreen from './src/screens/Login/LoginScreen';
-import RegisterScreen from './src/screens/Register/RegisterScreen';
-import HomeScreen from './src/screens/HomeScreen';
-import InScreen from './src/screens/InScreen';
-import ProfileScreen from './src/screens/ProfileScreen';
-import PreloadScreen from './src/screens/Preload/PreloadScreen';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
