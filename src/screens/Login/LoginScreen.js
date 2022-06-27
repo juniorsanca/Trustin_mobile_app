@@ -36,9 +36,11 @@ const LoginScreen = ({navigation}) => {
             if(res.token){
                 await AsyncStorage.setItem('token', res.token);
      
+                //Récuperer le redux ici et changer pour Isconnected = tru 
                 navigation.reset({
                     routes: [{name: 'HomeScreen'}]
                 });
+
 
             } else {
                 alert('Email ou senha errado !')

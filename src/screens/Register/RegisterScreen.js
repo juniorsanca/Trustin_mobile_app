@@ -33,7 +33,7 @@ const [confirmPassword, setConfirmPasswordField] = useState('');
 const handleRegisterClick = async () => {
         if(nameField != '' && emailField !='' && confirmPassword !='' && passwordField !='') {
             let res = await Api.Register(nameField, emailField, confirmPassword, passwordField);
-            console;log(res);
+            console.log(res);
 
             if(res.token) {
                 await AsyncStorage.setItem('token', res.token);

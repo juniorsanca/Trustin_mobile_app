@@ -18,7 +18,7 @@ import Influencers from "./components/Influencers";
 import { Modalize } from 'react-native-modalize';
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import RNTextArea from "@freakycoder/react-native-text-area";
-
+import { useScrollToTop } from '@react-navigation/native';
 
 
 const InScreen = () => {
@@ -69,10 +69,12 @@ const InScreen = () => {
         modalizeRefCommentForm.current?.close();
     }
 
-    
+    const homeRef = useRef(null);
+    useScrollToTop(homeRef);
+
     return (
         <SafeAreaView style={styles.container}>
-        <ScrollView style={{marginBottom: -38}}>
+        <ScrollView style={{marginBottom: -38}} ref={homeRef}>
             <View style={styles.root}>
                 <View style={styles.iinfo}>
                     <View>
