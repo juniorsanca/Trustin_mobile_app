@@ -6,16 +6,13 @@ import {createStackNavigator} from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import AuthNav from './src/screens/navigations/AuthNav';
-import HomeNav from './src/screens/navigations/HomeNav';
+import MainStack from './src/stacks/MainStack';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const App = () => {
-  const isConnected = false;
-
-
+  
   const [isAppFirstLaunched, setIsAppFirstLaunched] = React.useState(null);
   React.useEffect(async () => {
     const appData = await AsyncStorage.getItem('isAppFirstLaunched');
@@ -29,11 +26,13 @@ const App = () => {
     }
   }, []);
 
-  if (!isConnected ) {
-    return <AuthNav />
-  } else {
-    return <HomeNav />
-  }
+   return (
+      <NavigationContainer>
+        <MainStack />
+      </NavigationContainer>
+    
+   );
+
 }
 
 export default App;

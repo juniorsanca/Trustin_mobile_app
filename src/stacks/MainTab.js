@@ -2,11 +2,13 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import OnboardingScreen from '../OnboardingScreen';
-import HomeScreen from '../HomeScreen';
-import NewScreen from '../NewScreen';
-import InScreen from '../InScreen';
-import ProfileScreen from '../ProfileScreen';
+
+import OnboardingScreen from '../screens/OnboardingScreen';
+import HomeScreen from '../screens/HomeScreen';
+import NewScreen from '../screens/NewScreen';
+import InScreen from '../screens/InScreen';
+import ProfileScreen from '../screens/ProfileScreen';
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -15,7 +17,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const HomeNav = () => {
+const MainTab = () => {
   
   const [isAppFirstLaunched, setIsAppFirstLaunched] = React.useState(null);
   React.useEffect(async () => {
@@ -32,7 +34,6 @@ const HomeNav = () => {
 
   return (
     isAppFirstLaunched != null && (
-      <NavigationContainer>
         <Tab.Navigator screenOptions={{headerShown: false}}>
           {isAppFirstLaunched && (
             <Stack.Screen 
@@ -53,10 +54,9 @@ const HomeNav = () => {
                 <Icon name="user" size={20} color="black" /> ), }} />
 
         </Tab.Navigator>
-      </NavigationContainer>
     )
 
   )
 }
 
-export default HomeNav;
+export default MainTab;

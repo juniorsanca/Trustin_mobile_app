@@ -38,7 +38,7 @@ const LoginScreen = ({navigation}) => {
      
                 //Récuperer le redux ici et changer pour Isconnected = tru 
                 navigation.reset({
-                    routes: [{name: 'HomeScreen'}]
+                    routes: [{name: 'MainTab'}]
                 });
 
 
