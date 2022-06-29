@@ -31,7 +31,7 @@ const LoginScreen = ({navigation}) => {
     const handleLoginClick = async () => {
         if (emailField != '' && passwordField != '') {
 
-            let res = await Api.LoginIn(emailField, passwordField);
+            let res = await Api.Login(emailField, passwordField);
 
             if(res.token){
                 await AsyncStorage.setItem('token', res.token);

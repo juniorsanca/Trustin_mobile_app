@@ -1,3 +1,5 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 const BASE_API = 'http://localhost:8000/api';
 
 export default {
@@ -13,7 +15,7 @@ export default {
         const json = await req.json();
         return json;
     },
-    LoginIn: async (email, password) => {
+    Login: async (email, password) => {
         console.log("email", email);
         console.log("password", password);
 
@@ -42,5 +44,12 @@ export default {
         const json = await req.json();
         return json;
         
+    },
+    getCreators: async () => {
+        const token = await AsyncStorage.getItem('token');
+
+        const req = await fetch(`${BASE_API}/creators?token=${token}`);
+        const json = await req.json();
+        return json;
     }
 };

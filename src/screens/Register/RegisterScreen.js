@@ -39,7 +39,7 @@ const handleRegisterClick = async () => {
                 await AsyncStorage.setItem('token', res.token);
 
                 navigation.reset({
-                    routes: [{name: 'HomeScreen'}]
+                    routes: [{name: 'MainTab'}]
                 });
 
             } else {

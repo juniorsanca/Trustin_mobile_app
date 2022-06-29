@@ -43,6 +43,14 @@ const InScreen = () => {
     }, [influencer]);
 
 
+
+    //moved to top after problem with "rendered more hooks than during the previous render"
+    const modalizeRef = useRef(null);
+    const modalizeRefCommentForm = useRef(null);
+
+
+
+
     const goBack = () => {
         navigation.goBack();
     };
@@ -50,9 +58,6 @@ const InScreen = () => {
     if (!influencer) {
         return  <Text style={styles.notfound}>Influencer not found</Text>;
     }
-
-    const modalizeRef = useRef(null);
-    const modalizeRefCommentForm = useRef(null);
 
     const onOpen = () => {
         modalizeRef.current?.open();

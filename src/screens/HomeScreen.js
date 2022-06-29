@@ -5,12 +5,33 @@ import {
     TextInput,
     TouchableOpacity
 } from 'react-native';
+import {useState, useEffect} from "react";
 import ins from "../assets/data/ins";
 import React from "react";
 import Influencers from "./components/Influencers";
-
+import Api from '../Api';
 
 const HomeScreen = ({navigation}) => {
+
+    const [list, setList] = useState([]);
+
+    const getCreators = async () => {
+        setList([]);
+
+        let res = await Api.getCreators();
+        console.log(res)
+
+        if (res.error == '') {
+            setList(res.data);
+        } else {
+            alert("error : "+res.error)
+        }
+    }
+
+    useEffect(() => {
+        getCreators();
+    }, []);
+
 
     return (
             <View style={styles.body}>
